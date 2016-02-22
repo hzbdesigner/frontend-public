@@ -1,0 +1,79 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="login-page">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    </style>
+    <div class="fullscreen-images">
+      <div class="fullscreen-mask">
+        <div class="cards account center-block clearfix">
+          <div class="blk-2x"></div>
+          <div class="account-heading">
+            <div class="text-center"><img src="/images/brand.png" alt="和金云诊所" class="brand" /></div>
+          </div>
+          <div class="blk-5x"></div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <input class="form-control materila" type="text" required="" placeholder="手机号">
+              <div class="form-tip error text-danger">手机号错误</div>
+            </div>
+            <div class="form-group">
+              <input class="form-control materila" type="password" required="" placeholder="密码">
+              <div class="addon-text"><a href="recoverpw.html" class="text-danger">忘记密码</a></div>
+            </div>
+            <div class="form-group">
+              <input class="form-control materila" type="text" required="" placeholder="图片验证码">
+              <div class="addon-qrcode text-primary font-bold">
+                <a href="#" class="btn-link"><img src="/images/qrcode-img.jpg"></a>
+              </div>
+            </div>
+            <div class="blk-1x"></div>
+            <div class="form-group">
+              <paper-button primary class="btn-block btn-lg">登录</paper-button>
+            </div>
+            <div class="blk-1x"></div>
+            <div class="form-group">
+              <div class="pull-left"><a href="register.html" class="text-info">没有有账号，马上免费注册</a></div>
+              <div class="pull-right text-right">
+                <a href="" class="offset-1x" style="position: relative; top: -3px;">
+                  <span class="icon-box sm circle bg-green">
+                    <iron-icon icon="silk:wechat" class="small"></iron-icon>
+                  </span>
+                  <span class="offset-sm text-info">微信登录</span>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="fixed">
+      <div class="copyright font-sm text-center">版权所有 © 2016 和金云诊所 京ICP备15047050号-1</div>
+    </footer>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'login-page',
+      properties: {
+        username: {
+          type: String,
+          value: 'aaa',
+          notify: true
+        },
+        password: {
+          type: String,
+          value: '',
+          notify: true
+        }
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

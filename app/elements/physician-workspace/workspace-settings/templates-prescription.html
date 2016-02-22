@@ -1,0 +1,69 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="templates-prescription">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <div class="cards p-20">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="list-item item-border list-item-hover bg-muted">
+            <div class="pull-right edit">
+              <paper-icon-button icon="silk:pencil" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+            </div>
+            <div class="item">慢性胃炎</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-item item-border list-item-hover bg-muted">
+            <div class="pull-right edit">
+              <paper-icon-button icon="silk:pencil" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+            </div>
+            <div class="item">慢性胃炎</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-item item-border list-item-hover bg-muted">
+            <div class="pull-right edit">
+              <paper-icon-button icon="silk:pencil" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+            </div>
+            <div class="item">慢性胃炎</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-item item-border list-item-hover bg-muted">
+            <div class="pull-right edit">
+              <paper-icon-button icon="silk:pencil" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+            </div>
+            <div class="item">慢性胃炎</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <dialog-edit-prescription-template id="dialogEdit"></dialog-edit-prescription-template>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'templates-prescription',
+      _edit: function() {
+        this.$.dialogEdit.toggle(0);
+      }
+    });
+  })();
+  </script>
+</dom-module>

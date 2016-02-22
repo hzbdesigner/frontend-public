@@ -1,0 +1,78 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="drugs-drug">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    iron-pages {
+      background-color: var(--foreground-color);
+    }
+
+    </style>
+    <paper-scroll-header-panel fixed class="fit">
+      <div class="paper-header vertical layout">
+        <div class="cards p-20 p-b-0">
+          <h4 class="inline-block">M氨酚伪麻美芬片(白加黑)</h4>
+          <span class="offset-2x">
+            <paper-button link noink on-tap="_editDrug">编辑药品</paper-button>
+          </span>
+          <div class="cards-box p-20 clearfix">
+            <ul class="justified3-3 list-style none inline-2x">
+              <li><b>药品类型：</b>西药</li>
+              <li><b>常用单位：</b>盒</li>
+              <li class="text-danger"><b>总量：</b>45盒</li>
+              <li><b>来源：</b>国内</li>
+              <li><b>药品毒性：</b></li>
+              <li class="text-danger"><b>处方价格：</b>10 元/盒</li>
+              <li><b>药品规格：</b>1片/片*15/盒</li>
+              <li><b>生产厂家： </b>拜耳医药保健有限公司启东公司</li>
+              <li class="text-danger"><b>售药价格：</b>10 元/盒</li>
+              <li><b>药品剂型：</b>非包衣片</li>
+              <li><b>最后批发价：</b>10 元/盒</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="level2-tab-container horizontal layout">
+            <paper-tabs id="tabs" noink attr-for-selected="tabid" selected="{{selectedTab}}">
+              <paper-tab tabid="in">新增</paper-tab>
+              <paper-tab tabid="out">售出</paper-tab>
+            </paper-tabs>
+            <div class="flex"></div>
+          </div>
+        </div>
+      </div>
+      <iron-pages id="pages" class="p-20" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <drugs-drug-in tabid="in" class="sub-page"></drugs-drug-in>
+        <drugs-drug-out tabid="out" class="sub-page"></drugs-drug-out>
+      </iron-pages>
+    </paper-scroll-header-panel>
+    <dialog-add-drug id="editDrugDialog"></dialog-add-drug>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'drugs-drug',
+      properties: {
+        selectedTab: {
+          value: 'in',
+          type: String,
+          notify: true
+        }
+      },
+      _editDrug: function(e) {
+        console.log(e);
+        this.$.editDrugDialog.toggle();
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

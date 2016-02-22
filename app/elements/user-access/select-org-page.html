@@ -1,0 +1,102 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="select-org-page">
+  <template>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    .user-account {
+      white-space: nowrap;
+    }
+    
+    .account-item {
+      position: relative;
+      display: inline-block;
+      margin: 0 20px;
+      width: 180px;
+    }
+    
+    .account-item paper-button {
+      width: 100%;
+      padding: 4px 0;
+      border: none;
+      background: var(--foreground-color);
+    }
+    
+    .account-item .btn-item {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      z-index: 999;
+    }
+    
+    .account-item .btn-item li {
+      display: inline-block;
+      padding: 5px;
+    }
+    
+    .account-item .name {
+      position: absolute;
+      width: 180px;
+      text-align: center;
+    }
+    
+    .account-item:hover img {
+      opacity: 0.9;
+    }
+    
+    .account-item a {
+      color: #fff;
+    }
+    
+    .account-item a:hover {
+      color: #fff;
+      opacity: 0.8;
+    }
+    </style>
+    <div class="fullscreen-images">
+      <div class="fullscreen-mask">
+        <div class="user-account center-block clearfix">
+          <div class="account-item">
+            <div class="mask-full"></div>
+            <div class="btn-item justified2-2">
+              <li>
+                <span>
+                  <paper-button raised>接受</paper-button>
+                </span>
+              </li>
+              <li>
+                <span>
+                  <paper-button raised>拒绝</paper-button>
+                </span>
+              </li>
+            </div>
+            <a href="#"><img src="/images/logo1.png" class="img-responsive">
+              <h5 class="name font-normal">维世达诊所</h5></a>
+          </div>
+          <div class="account-item">
+            <a href="#"><img src="/images/logo2.png" class="img-responsive">
+              <h5 class="name font-normal">民康诊所</h5></a>
+          </div>
+          <div class="account-item">
+            <a href="#"><img src="/images/add.png" class="img-responsive"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="fixed">
+      <div class="copyright font-sm text-center">版权所有 © 2016 和金云诊所 京ICP备15047050号-1</div>
+    </footer>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'select-org-page'
+    });
+  })();
+  </script>
+</dom-module>

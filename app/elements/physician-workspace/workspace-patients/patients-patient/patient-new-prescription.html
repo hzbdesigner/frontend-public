@@ -1,0 +1,483 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="patient-new-prescription">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--foreground-color);
+    }
+    
+    .icon-action {
+      color: var(--muted-text-color);
+    }
+    </style>
+    <paper-header-panel id="main" mode="seamed" main>
+      <div class="blk-1x"></div>
+      <div class="p-container">
+        <div class="pull-left">
+          <div class="row-1x">
+            <div class="group-span-1x">
+              <span>
+                <paper-button secondary>主诉/既往病史/现病史</paper-button>
+              </span>
+              <span>
+                <paper-button secondary>体征</paper-button>
+              </span>
+              <span>
+                <paper-button primary>医嘱</paper-button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="pull-right">
+          <paper-button primary>结束就诊</paper-button>
+        </div>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <b class="section-heading">诊断结果</b>
+          <div class="blk-1x"></div>
+          <div class="diagnosis">
+            <div class="result-well">
+              <div class="row">
+                <diagnose-item class="col-md-4">
+                </diagnose-item>
+                <diagnose-item class="col-md-4">
+                </diagnose-item>
+                <div class="blk-1x"></div>
+                <div class="col-md-4">
+                  <div class="list-item list-item-control">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-btn">
+                        <paper-button primary>添加</paper-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <div class="row">
+            <div class="col-md-4">
+              <b class="section-heading">西药处方</b></div>
+            <div class="col-md-8 text-right icon-action">
+              <paper-icon-button icon="silk:menu" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:save" class="small"></paper-icon-button>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+          <div class="prescription">
+            <table class="table basic basic-padding text-center bg-white">
+              <thead>
+                <tr>
+                  <th class="text-left">药物名称</th>
+                  <th>单次用量</th>
+                  <th>用法</th>
+                  <th>频次</th>
+                  <th>天数</th>
+                  <th>总量</th>
+                  <th>单价</th>
+                  <th>皮试</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="text-lenght-control">奥硝唑片奥硝唑片奥硝唑片奥硝唑片</span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <input type="text">
+                      <span class="border-l">
+                        <select class="">
+                          <option value="g">g</option>
+                          <option value="克">克</option>
+                          <option value="mg">mg</option>
+                          <option value="毫克">毫克</option>
+                          <option value="μg">μg</option>
+                          <option value="微克">微克</option>
+                          <option value="ml">ml</option>
+                          <option value="毫升">毫升</option>
+                          <option value="IU">IU</option>
+                          <option value="片">片</option>
+                          <option value="粒">粒</option>
+                          <option value="丸">丸</option>
+                          <option value="支">支</option>
+                          <option value="贴">贴</option>
+                          <option value="瓶">瓶</option>
+                          <option value="袋">袋</option>
+                          <option value="套">套</option>
+                          <option value="滴">滴</option>
+                        </select>
+                      </span>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <select>
+                        <option value="口服">口服</option>
+                        <option value="静脉推注">静脉推注</option>
+                        <option value="外用">外用</option>
+                        <option value="冲服">冲服</option>
+                        <option value="煎服">煎服</option>
+                        <option value="肌肉注射">肌肉注射</option>
+                        <option value="皮下注射">皮下注射</option>
+                        <option value="舌下含服">舌下含服</option>
+                        <option value="含服">含服</option>
+                        <option value="喷雾吸入">喷雾吸入</option>
+                        <option value="雾化吸入">雾化吸入</option>
+                        <option value="纳肛">纳肛</option>
+                        <option value="保留灌肠">保留灌肠</option>
+                        <option value="皮内注射">皮内注射</option>
+                        <option value="嚼服">嚼服</option>
+                        <option value="静脉滴注">静脉滴注</option>
+                        <option value="入壶">入壶</option>
+                      </select>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <select>
+                        <option value="一日一次">一日一次</option>
+                        <option value="一日两次">一日两次</option>
+                        <option value="一日三次">一日三次</option>
+                        <option value="一日四次">一日四次</option>
+                        <option value="遵医嘱">遵医嘱</option>
+                      </select>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <input type="text">
+                      <span class="addon border-l">天</span>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <input type="text">
+                      <span class="border-l">
+                        <select>
+                          <option value="盒">盒</option>
+                          <option value="瓶">瓶</option>
+                          <option value="袋">袋</option>
+                          <option value="套">套</option>
+                          <option value="板">板</option>
+                          <option value="支">支</option>
+                          <option value="包">包</option>
+                          <option value="g">g</option>
+                          <option value="克">克</option>
+                          <option value="mg">mg</option>
+                          <option value="毫克">毫克</option>
+                          <option value="μg">μg</option>
+                          <option value="微克">微克</option>
+                          <option value="ml">ml</option>
+                          <option value="毫升">毫升</option>
+                          <option value="IU">IU</option>
+                          <option value="片">片</option>
+                          <option value="粒">粒</option>
+                          <option value="丸">丸</option>
+                          <option value="贴">贴</option>
+                        </select>
+                      </span>
+                    </span>
+                  </td>
+                  <td>
+                    <span class="table-form">
+                      <input type="text" class="form-md">
+                      <span class="addon border-l">元</span>
+                    </span>
+                  </td>
+                  <td>
+                    <input type="checkbox">
+                  </td>
+                  <td>
+                    <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <suggesting-input id="medicationSuggests1" suggests={{medicationSuggests1}} placeholder="请输入添加的的药品名称">
+                      <suggest-medications class="suggests" suggests={{medicationSuggests1}}></suggest-medications>
+                    </suggesting-input>
+                  </td>
+                  <td colspan="7"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <div class="row">
+            <div class="col-md-4">
+              <b class="section-heading">中药处方</b></div>
+            <div class="col-md-8 text-right icon-action">
+              <paper-icon-button icon="silk:menu" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:save" class="small"></paper-icon-button>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+          <div class="row">
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <chinese-medication class="col-md-4"></chinese-medication>
+            <div class="blk-1x"></div>
+            <div class="col-md-4">
+              <div class="list-item list-item-control">
+                <suggesting-input id="medicationSuggests2" suggests={{medicationSuggests2}} placeholder="请输入添加的的药品名称">
+                  <suggest-medications class="suggests" suggests={{medicationSuggests2}}></suggest-medications>
+                </suggesting-input>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <b class="section-heading">其他费用</b>
+          <div class="blk-1x"></div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="list-item item-border edit">
+                <div class="name pull-left">
+                  诊疗费
+                </div>
+                <span class="pull-right">
+                  <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+                </span>
+                <div class="pull-right">
+                  <span class="table-form">
+                    <input type="text" class="form-md">
+                    <span class="addon border-l">元</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+          <paper-button primary on-tap="_showFees">附加费</paper-button>
+        </section>
+        <div class="blk-2x"></div>
+        <div class="text-right price-zone">合计金额：<b class="text-danger">¥53.40</b>
+          <div class="blk-1x"></div>
+        </div>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <div class="row-2x">
+            <div class="justified3-3">
+              <li>
+                <div class="p-l-r-10"><b class="section-heading">主诉</b>
+                  <div class="blk-1x"></div>
+                  <textarea class="form-control">请输入病情描述</textarea>
+                </div>
+              </li>
+              <li>
+                <div class="p-l-r-10"><b class="section-heading">现病史</b>
+                  <div class="blk-1x"></div>
+                  <textarea class="form-control">请输入现病史</textarea>
+                </div>
+              </li>
+              <li>
+                <div class="p-l-r-10"><b class="section-heading">既往病史</b>
+                  <div class="blk-1x"></div>
+                  <textarea class="form-control">请输入既往病史</textarea>
+                </div>
+              </li>
+            </div>
+          </div>
+        </section>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <b class="section-heading">体征</b>
+          <div class="blk-1x"></div>
+          <div class="form-inline col-p-10">
+            <div class="row-2x">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="label-control">身高:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">cm</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="label-control">体重:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">kg</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="label-control">体温:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">℃</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="label-control">脉搏:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">次/分</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group m-0">
+                  <label class="label-control">心率:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">次/分</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-0">
+                  <label class="label-control">血压:</label>
+                  <div class="span">
+                    <div class="input-group ">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon center">/</div>
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">mmhg</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="blk-2x"></div>
+        <section class="gray border hover p-20">
+          <div class="row">
+            <div class="col-md-4">
+              <b class="section-heading">医嘱</b></div>
+            <div class="col-md-8 text-right icon-action">
+              <paper-icon-button icon="silk:menu" class="small"></paper-icon-button>
+              <paper-icon-button icon="silk:save" class="small"></paper-icon-button>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+          <textarea class="form-control">请输入医嘱</textarea>
+        </section>
+        <div class="blk-2x"></div>
+      </div>
+      </div>
+      <dialog-fees id="dialogFees"></dialog-fees>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'patient-new-prescription',
+      properties: {
+        selectedTab: {
+          value: 'mostUsed',
+          type: String,
+          notify: true,
+        }
+      },
+      listeners: {
+        'medicationSuggests.suggest-select': '_medicationSuggestSelected'
+      },
+      _medicationSuggestSelected: function(e) {
+        console.log(e);
+      },
+      _showFees: function() {
+        this.$.dialogFees.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>
+<dom-module id="diagnose-item">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {}
+    </style>
+    <div class="list-item item-border edit">
+      <div class="name pull-left">
+        <span class="text-dark">bsd</span> 心血管堵塞 ( 心血堵塞 )
+      </div>
+      <span class="pull-right">
+        <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+      </span>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'diagnose-item'
+    });
+  })();
+  </script>
+</dom-module>
+<dom-module id="chinese-medication">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {}
+    </style>
+    <div class="list-item item-border edit">
+      <div class="name pull-left">
+        <span class="">地黄</span>
+      </div>
+      <span class="pull-right">
+        <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+      </span>
+      <div class="pull-right">
+        <span class="table-form">
+          <input type="text" class="md">
+          <span class="addon border-l">g</span>
+          <span class="border-l">
+            <select name="cnDrugList[0].useMethod" class="enter zySelect">
+              <option value="">默认</option>
+              <option value="先煎">先煎</option>
+              <option value="后下">后下</option>
+              <option value="包煎">包煎</option>
+              <option value="烊化">烊化</option>
+              <option value="冲服">冲服</option>
+            </select>
+          </span>
+        </span>
+      </div>
+    </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'chinese-medication'
+    });
+  })();
+  </script>
+</dom-module>

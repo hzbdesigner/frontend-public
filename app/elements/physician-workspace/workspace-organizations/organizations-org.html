@@ -1,0 +1,111 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="organizations-org">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    iron-pages {
+      padding: 40px;
+    }
+    
+    .sub-page {
+      @apply(--layout-fit);
+    }
+    </style>
+    <!--     <div class="menu horizontal layout">
+      
+      <paper-fab id="soap-fab" icon="silk:records" alt="aaaaaa"></paper-fab>
+      <paper-fab id="prescription-fab" icon="silk:prescription" alt="aaaaaa"></paper-fab>
+      <paper-fab id="default-fab" icon="add" class="primary"></paper-fab>
+      <floating-buttons></floating-buttons>
+    </div> -->
+    <paper-scroll-header-panel class="fit" fixed>
+      <div class="level2-tab-container paper-header horizontal layout cards">
+        <paper-tabs id="tabs" noink attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="info">机构信息</paper-tab>
+          <paper-tab tabid="members">机构成员</paper-tab>
+          <paper-tab tabid="verify">机构认证</paper-tab>
+          <paper-tab tabid="fees">收费管理</paper-tab>
+        </paper-tabs>
+        <div class="flex"></div>
+      </div>
+      <iron-pages id="pages" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <organizations-org-info tabid="info" class="sub-page"></organizations-org-info>
+        <organizations-org-members tabid="members" class="sub-page"></organizations-org-members>
+        <organizations-org-verify tabid="verify" class="sub-page"></organizations-org-verify>
+        <organizations-org-fees tabid="fees" class="sub-page"></organizations-org-fees>
+        </div>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'organizations-org',
+      listeners: {
+        'prescription-fab.tap': '_showDialogPrescriptionOnly',
+        'soap-fab.tap': '_showDialogSoapOnly',
+        'default-fab.tap': '_showDialogSoap'
+      },
+      properties: {
+        selectedTab: {
+          value: 'info',
+          type: String,
+          notify: true,
+        },
+        patientId: {
+          type: String,
+          notify: true,
+        },
+        profile: {
+          type: Object,
+          notify: true,
+          value: {
+            name: '王东',
+            dob: '1977 07-07',
+            gender: 'mail',
+            sid: '身份证 210381192291919291'
+          }
+        }
+      },
+      _showDialogPrescriptionOnly: function() {
+        if (!this._dialogPrescriptionOnly) {
+          this._dialogPrescriptionOnly =
+            document.createElement('dialog-prescription-only');
+          this.appendChild(this._dialogPrescriptionOnly);
+        }
+        this._dialogPrescriptionOnly.toggle();
+      },
+      _showDialogSoapOnly: function() {
+        if (!this._dialogSoapOnly) {
+          this._dialogSoapOnly =
+            document.createElement('dialog-soap-only');
+          this.appendChild(this._dialogSoapOnly);
+        }
+        this._dialogSoapOnly.toggle();
+      },
+      _showDialogSoap: function() {
+        if (!this._dialogSoap) {
+          this._dialogSoap =
+            document.createElement('dialog-combined-actions');
+          this.appendChild(this._dialogSoap);
+        }
+        this._dialogSoap.toggle();
+      },
+      _showDialogVitals: function() {
+        if (!this._dialogVitals) {
+          this._dialogVitals =
+            document.createElement('dialog-vitals');
+          this.appendChild(this._dialogVitals);
+        }
+        this._dialogVitals.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

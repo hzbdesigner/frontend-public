@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-settings">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      padding: var(--workspace-padding);
+    }
+    </style>
+    <paper-scroll-header-panel fixed>
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs id="tabs" noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="profile">基本信息</paper-tab>
+          <paper-tab tabid="security">修改密码</paper-tab>
+          <paper-tab tabid="account-binding">账号绑定</paper-tab>
+          <paper-tab tabid="templates">模板管理</paper-tab>
+          <paper-tab tabid="verify">资质认证 </paper-tab>
+        </paper-tabs>
+      </div>
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <settings-profile tabid="profile" class="flex"></settings-profile>
+        <settings-security tabid="security" class="flex"></settings-security>
+        <settings-account-binding tabid="account-binding" class="flex"></settings-account-binding>
+        <settings-templates tabid="templates" class="flex"></settings-templates>
+        <settings-verify tabid="verify" class="flex"></settings-verify>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-settings',
+      properties: {
+        selectedTab: {
+          value: 'profile',
+          type: String,
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

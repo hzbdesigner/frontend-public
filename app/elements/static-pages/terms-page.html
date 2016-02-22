@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="terms-page">
+  <template>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    paper-material {
+      background-color: var(--foreground-color);
+      width: 1024px;
+      padding: 40px;
+      margin: 40px 0;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    marked-element::content p {
+      line-height: 1.8em;
+    }
+    
+    paper-toolbar {
+      background-color: var(--shade-color);
+      color: var(--primary-text-color);
+    }
+
+    </style>
+    <iron-ajax auto url="/docs/terms.md" handle-as="text" last-response="{{markdown}}"></iron-ajax>
+    <paper-header-panel mode="waterfall" class=" fit ">
+      <paper-toolbar>
+        <div class="flex"></div>
+        <h1>用户使用条款</h1>
+        <div class="flex"></div>
+      </paper-toolbar>
+      <div class="flex center-justified horizontal layout ">
+        <paper-material elevation="1 ">
+          <marked-element markdown="[[markdown]] "></marked-element>
+        </paper-material>
+      </div>
+    </paper-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'terms-page'
+    });
+  })();
+
+  </script>
+</dom-module>
+

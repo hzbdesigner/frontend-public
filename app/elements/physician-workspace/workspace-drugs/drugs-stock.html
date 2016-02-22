@@ -1,0 +1,430 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="drugs-stock">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    </style>
+    <div class="vertical layout fit">
+      <paper-scroll-header-panel fixed class="flex">
+        <!-- header  -->
+        <div class="paper-header vertical layout">
+          <div class="cards">
+            <div class="filter p-20">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group m-0">
+                      <label class="label-control">药品名称</label>
+                      <input type="text" placeholder="" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group m-0">
+                      <label class="label-control">请处方类型</label>
+                      <select class="form-control">
+                        <option>全部</option>
+                        <option>中药</option>
+                        <option>西药</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group m-0">
+                      <label class="label-control">库存预警</label>
+                      <select class="form-control">
+                        <option>全部</option>
+                        <option>预警</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <paper-button primary>查询</paper-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider solid"></div>
+            <div class="p-20 clearfix">
+              <div class="row-2x">
+                <div class="col-md-8">
+                  <div class="row-2x">
+                    <div class="group-span-2x">
+                      <span>库存药品总计：<b class="text-danger">411</b> 种</span>
+                      <span>中草药：<b class="text-danger">202</b> 种</span>
+                      <span>西药：<b class="text-danger">160</b> 种</span>
+                      <span>中成药：<b class="text-danger">49</b> 种</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 text-right">
+                  <paper-button secondary id="batchEditButton">批量设置</paper-button>
+                  <span class="offset-1x">
+                    <paper-button primary id="addDrugButton">新增药品</paper-button>
+                  </span>
+                  <!-- <span class="offset-1x">
+                    <paper-button secondary>自定义列</paper-button>
+                  </span> -->
+                </div>
+              </div>
+            </div>
+            <div class="divider solid"></div>
+          </div>
+        </div>
+        <!-- main content -->
+        <div class="fit main vertical layout">
+          <!-- table -->
+          <div class="flex">
+            <div class="cards">
+              <div class="p-20">
+                <table class="table m-0 table-hover table-bordered text-center">
+                  <col span="1" class="col-fixed50">
+                  <thead>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">药品名称</th>
+                      <th>药品规格</th>
+                      <th>库存</th>
+                      <th>日期</th>
+                      <th class="text-left">生产厂家</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">M氨酚伪麻美芬片(白加黑)</a>
+                      </th>
+                      <td>1片/片*15/盒</td>
+                      <td>70盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">拜耳医药保健有限公司启东公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">地塞米松磷酸钠注射液</a>
+                      </th>
+                      <td>1片/片*15/盒</td>
+                      <td>56盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">西南药业股份有限公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿氨酚黄那敏颗粒(果娃)</a>
+                      </th>
+                      <td>5毫克/支*10/盒</td>
+                      <td>50盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">地奥集团成都药业股份有限公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">盐酸普奈洛尔片(心得安)</a>
+                      </th>
+                      <td>10毫克/片*100/瓶</td>
+                      <td>40盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">拜耳医药保健有限公司启东公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">盐酸普奈洛尔片(心得安)</a>
+                      </th>
+                      <td>8毫克/片*1000/瓶</td>
+                      <td>
+                        <span class="text-danger">6盒</span>
+                      </td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">四川科伦制药有限公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">盐酸雷尼替丁胶囊</a>
+                      </th>
+                      <td>0.15g/粒*30/盒</td>
+                      <td>100盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">拜耳医药保健有限公司启东公司</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <input type="checkbox">
+                      </th>
+                      <th class="text-left">
+                        <a href="drug-detail.html" class="text-info">小儿肺热咳喘口服液</a>
+                      </th>
+                      <td>10毫升/瓶*6/盒</td>
+                      <td>23盒</td>
+                      <td>2015-07-22</td>
+                      <td class="text-left">黑龙江葵花药业</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </paper-scroll-header-panel>
+      <!-- footer -->
+      <div class="divider solid"></div>
+      <div class="cards">
+        <div class="p-20">
+          <div class="row-2x">
+            <div class="col-md-4 pagination-setting">
+              <div class="row-1x">
+                <div class="group-span-1x">
+                  <span>每页</span>
+                  <span>
+                    <select>
+                      <option>10</option>
+                      <option>20</option>
+                    </select>
+                  </span>
+                  <span>条</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 text-right">
+              <ul class="pagination list-style none inline-block vm">
+                <li>
+                  <a href="#"><i>&lt;</i></a>
+                </li>
+                <li>
+                  <a href="#">1</a>
+                </li>
+                <li class="active">
+                  <a href="#">2</a>
+                </li>
+                <li>
+                  <a href="#">3</a>
+                </li>
+                <li>
+                  <a href="#">4</a>
+                </li>
+                <li>
+                  <a href="#">5</a>
+                </li>
+                <li>
+                  <a href="javsript:void">…</a>
+                </li>
+                <li>
+                  <a href="#"><i>&gt;</i></a>
+                </li>
+              </ul>
+              <div class="pagination-quick vm offset-2x">
+                <span>转到</span>
+                <span class="offset-s">
+                  <select>
+                    <option>1</option>
+                    <option>2</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+        </div>
+      </div>
+    </div>
+    <dialog-batch-edit-drugs id="batchEditDialog"></dialog-batch-edit-drugs>
+    <dialog-add-drug id="addDrugDialog"></dialog-add-drug>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'drugs-stock',
+      listeners: {
+        'batchEditButton.tap': '_toggleDialogBatchEdit',
+        'addDrugButton.tap': '_toggleDialogAddDrug',
+      },
+      _toggleDialogBatchEdit: function() {
+        this.$.batchEditDialog.toggle();
+      },
+      _toggleDialogAddDrug: function() {
+        this.$.addDrugDialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

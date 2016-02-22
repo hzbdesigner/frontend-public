@@ -1,0 +1,110 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="patients-patient">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    .menu {
+      z-index: 3;
+      position: absolute;
+      right: 70px;
+    }
+    /*   .menu > paper-fab {
+      margin-left: 10px;
+      background-color: var(--default-primary-color);
+    }
+    */
+    
+    .menu floating-buttons {
+      position: relative;
+      right: -70px;
+      top: -36px;
+    }
+    
+    iron-pages {
+      padding: 40px;
+    }
+    
+    .sub-page {
+      @apply(--layout-fit);
+    }
+    </style>
+    <paper-scroll-header-panel class="fit" fixed>
+      <div class="level2-tab-container paper-header horizontal layout">
+        <paper-tabs id="tabs" noink attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="summary">患者档案</paper-tab>
+          <paper-tab tabid="encounters">就诊历史</paper-tab>
+          <paper-tab accent id="prescriptionTab" tabid="prescription">新处方</paper-tab>
+        </paper-tabs>
+        <div class="flex"></div>
+      </div>
+      <iron-pages id="pages" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <patient-summary tabid="summary" class="sub-page"></patient-summary>
+        <patient-encounters tabid="encounters" class="sub-page"></patient-encounters>
+        <patient-new-prescription tabid="prescription" class="sub-page"></patient-new-prescription>
+        </div>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'patients-patient',
+      listeners: {
+        'new-prescription': '_showPrescriptionTab',
+        'new-soap': '_showSoapTab',
+        'add-allergies': '_showDialogAllergy',
+        'add-vitals': '_showDialogVitals',
+        'stop-all': '_stopAll'
+      },
+      properties: {
+        selectedTab: {
+          value: 'encounters',
+          type: String,
+          notify: true,
+        },
+        patientId: {
+          type: String,
+          notify: true,
+        },
+        profile: {
+          type: Object,
+          notify: true,
+          value: {
+            name: '王东',
+            dob: '1977 07-07',
+            gender: 'mail',
+            sid: '身份证 210381192291919291'
+          }
+        }
+      },
+      _stopAll: function() {
+        this.$.soapTab.style.display = 'none';
+        this.$.prescriptionTab.style.display = 'none';
+        this.selectedTab = 'encounters';
+      },
+      _showDialogAllergy: function() {
+        if (!this._dialogAllergies) {
+          this._dialogAllergies =
+            document.createElement('dialog-allergies');
+          this.appendChild(this._dialogAllergies);
+        }
+        this._dialogAllergies.toggle();
+      },
+      _showDialogVitals: function() {
+        if (!this._dialogVitals) {
+          this._dialogVitals =
+            document.createElement('dialog-vitals');
+          this.appendChild(this._dialogVitals);
+        }
+        this._dialogVitals.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

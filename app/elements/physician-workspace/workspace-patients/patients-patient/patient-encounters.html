@@ -1,0 +1,592 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="patient-encounters">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--foreground-color);
+    }
+    
+    paper-toolbar {
+      background-color: transparent;
+      height: 0;
+    }
+    
+    .timeline {
+      position: relative;
+      background-color: var(--foreground-color);
+    }
+    
+    .timeline .patient-heading .photo-round {
+      position: absolute;
+      left: 17%;
+      top: 0;
+      margin: 0 0 0 -43px;
+    }
+    
+    .timeline .patient-heading .photo-round img {
+      box-shadow: 0 0 0 1px var(--box-border-color);
+      width: 60px;
+      height: 60px;
+    }
+    
+    .timeline:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--box-border-color);
+      left: 17%;
+      margin-left: -15px
+    }
+    
+    .timeline>.section {
+      position: relative
+    }
+    
+    .timeline>.section .label {
+      display: block;
+      width: 20%;
+      top: 8px;
+      padding-right: 100px;
+      position: absolute;
+      color: var(--muted-text-color);
+    }
+    
+    .timeline>.section .label span {
+      display: block;
+      text-align: right
+    }
+    
+    .timeline>.section .label span:last-child {
+      color: var(--default-text-color);
+      font-weight: bold;
+    }
+    
+    .timeline>.section.patient-heading .item-group {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 0 0 40px 22%;
+    }
+    
+    .timeline>.section.patient-heading .item-group:before,
+    .timeline>.section.patient-heading .item-group:after {
+      border: none;
+    }
+    
+    .timeline>.section:last-child:before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--foreground-color);
+      left: 17%;
+      margin-left: -15px
+    }
+    
+    .timeline>.section.active .item-group .item {
+      border: 1px solid var(--light-primary-color);
+    }
+    
+    .timeline>.section .item-group {
+      margin: 40px 0 20px 22%;
+    }
+    
+    .timeline>.section .item-group .item {
+      background: var(--paper-grey-50);
+      padding: 20px 30px;
+      position: relative;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--box-border-color);
+      margin-bottom: 10px;
+    }
+    
+    .timeline>.section .item-group .date-time {
+      font-size: 0.8em;
+      color: var(--muted-text-color);
+    }
+    
+    .timeline>.section .item-group h3 {
+      margin: 0;
+      padding: 15px 0 5px 0;
+    }
+    
+    .timeline>.section .item-group h4 {
+      margin: 0 0 10px 0;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--divider-color);
+      font-size: 1.1em;
+    }
+    
+    .timeline>.section .item-group h4 iron-icon {
+      font-weight: normal;
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      position: relative;
+      top: -2px;
+    }
+    
+    .timeline>.section .item-group h4 .icon {
+      font-weight: normal;
+      font-size: 1.5em;
+      position: relative;
+      top: 2px;
+      padding-right: 5px;
+    }
+    
+    .timeline>.section .item-group .item:first-child:after {
+      right: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-right-color: var(--box-bg-color);
+      border-width: 10px;
+      top: 22px
+    }
+    
+    .timeline>.section .item-group .item:first-child:before {
+      right: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-right-color: var(--box-border-color);
+      border-width: 11px;
+      top: 21px
+    }
+    
+    .timeline>.section.active .item-group .item:first-child:after {
+      border-right-color: var(--box-bg-color);
+      ;
+    }
+    
+    .timeline>.section.active .item-group .item:first-child:before {
+      border-right-color: var(--light-primary-color);
+      ;
+    }
+    
+    .timeline>.section .mark {
+      width: 24px;
+      height: 24px;
+      -webkit-font-smoothing: antialiased;
+      position: absolute;
+      color: var(--text-primary-color);
+      background: var(--secondary-text-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px var(--box-border-color);
+      text-align: center;
+      left: 17%;
+      top: 20px;
+      margin: 0 0 0 -25px;
+      border: 5px solid var(--foreground-color);
+    }
+    
+    .timeline>.section .mark.active {
+      background: var(--default-primary-color);
+    }
+    
+    .timeline-menu {
+      position: absolute;
+      color: var(--muted-text-color);
+      right: 10px;
+      top: 5px;
+    }
+    
+    .prescription [class*=col-md-] {
+      padding: 0;
+    }
+    
+    .prescription td,
+    .prescription th {
+      padding: 10px 0 !important;
+    }
+    
+    .prescription.c {}
+    
+    .prescription.c ol {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .prescription.c li {
+      position: relative;
+      padding: 10px 0;
+      list-style: none;
+      border-bottom: 1px solid var(--box-border-color)!important;
+    }
+    
+    .prescription.c li span {
+      display: inline-block
+    }
+    
+    .prescription.c li span:first-child {
+      width: 50%;
+      padding-left: 5px;
+      font-weight: bold;
+    }
+    
+    .prescription.c li span:last-child {
+      width: 30%;
+      opacity: 0.6;
+      text-align: right;
+    }
+    </style>
+    <paper-scroll-header-panel class="fit" fixed>
+      <paper-toolbar class="seamed">
+        <div class="flex"></div>
+      </paper-toolbar>
+      <div class="blk-1x"></div>
+      <div class="cards p-container">
+        <div class="timeline">
+          <div class="section patient-heading">
+            <div class="photo-round lg">
+              <img src="/images/photo-default.png" class="img-circle" alt="头像" />
+            </div>
+            <div class="item-group">
+              <div class="item">
+                <b class="inline-block"><span>张琪</span><span class="offset-2x">男</span><span class="offset-2x">58岁</span></b>
+                <span class="offset-2x">手机号：18656748940</span>
+                <span class="offset-2x">生日：1958年12月5日</span>
+                <span class="offset-2x font-normal text-danger">有过敏史</span>
+              </div>
+            </div>
+          </div>
+          <div class="section active">
+            <div class="label">
+              <span>2015-08-06</span>
+              <span>维世达诊所</span>
+            </div>
+            <div class="mark active"> </div>
+            <div class="item-group">
+              <div class="item">
+                <paper-menu-button class="timeline-menu" no-animations>
+                  <paper-icon-button icon="silk:menu" class="dropdown-trigger small"></paper-icon-button>
+                  <paper-menu class="dropdown-content">
+                    <paper-item>Share</paper-item>
+                    <paper-item>Settings</paper-item>
+                    <paper-item>Help</paper-item>
+                  </paper-menu>
+                </paper-menu-button>
+                <div class="date-time">12:30 - 13:34 （ 由张亮医生诊断 ）</div>
+                <h4><iron-icon icon="silk:records"></iron-icon>病例</h4>
+                <ul class="list-style line-1x none">
+                  <li><b>主诉：</b>慢性胃炎</li>
+                  <li><b>现病史：</b>无</li>
+                  <li><b>既往病史：</b>无</li>
+                  <li><b>诊断结果：</b>
+                    <span>1、心血管堵塞－轻( 心血堵塞 )</span>
+                    <span class="offset-2x">2、风疹－重( 风疹红斑 )</span>
+                  </li>
+                  <li><b>诊疗意见：</b>疏肝解郁，和胃降逆，理气化湿。</li>
+                </ul>
+                <div class="blk-1x"></div>
+                <h4><iron-icon icon="silk:allergies"></iron-icon>过敏史</h4>
+                <ul class="list-style inline inline-2x none">
+                  <li><b>注射青霉素</b> － 皮疹、皮痒、发热（药物过敏）</li>
+                  <li><b>眼睛干涩</b>－ 干燥冬风（环境过敏）</li>
+                </ul>
+                <div class="blk-1x"></div>
+                <h4><iron-icon icon="silk:prescription"></iron-icon>处方</h4>
+                <div class="prescription">
+                  <table class="table basic text-center">
+                    <thead>
+                      <tr>
+                        <th>药品名</th>
+                        <th>规格</th>
+                        <th>用量</th>
+                        <th>用法</th>
+                        <th>总量</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>999感冒冲剂</th>
+                        <td>40mg</td>
+                        <td></td>
+                        <td>开水冲服</td>
+                        <td>15天</td>
+                      </tr>
+                      <tr>
+                        <th>999感冒冲剂</th>
+                        <td>40mg</td>
+                        <td></td>
+                        <td>开水冲服</td>
+                        <td>15天</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="item">
+                <paper-menu-button class="timeline-menu" no-animations>
+                  <paper-icon-button icon="silk:menu" class="dropdown-trigger small"></paper-icon-button>
+                  <paper-menu class="dropdown-content">
+                    <paper-item>Share</paper-item>
+                    <paper-item>Settings</paper-item>
+                    <paper-item>Help</paper-item>
+                  </paper-menu>
+                </paper-menu-button>
+                <div class="date-time">12:30 - 13:34 （ 由张鑫护士测量 ）</div>
+                <h4><iron-icon icon="silk:people"></iron-icon>体格检查</h4>
+                <ul class="list-style inline inline-2x none">
+                  <li><b>体温：</b>32℃ </li>
+                  <li><b>脉搏：</b>98 次/分</li>
+                  <li><b>血压：</b>127 / 189 mmHg </li>
+                  <li><b>心率：</b>68 次/分 </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="label">
+              <span>2015-08-06</span>
+              <span>民康诊所</span>
+            </div>
+            <div class="mark"> </div>
+            <div class="item-group">
+              <div class="item">
+                <div class="date-time">12:30 - 13:34 （ 由邬维庸医生诊断 ）</div>
+                <h4><iron-icon icon="silk:records"></iron-icon>病例</h4>
+                <ul class="list-style line-1x none">
+                  <li><b>主诉：</b>慢性胃炎</li>
+                  <li><b>现病史：</b>无</li>
+                  <li><b>既往病史：</b>无</li>
+                  <li><b>诊断结果：</b>
+                    <span>1、心血管堵塞－轻( 心血堵塞 )</span>
+                    <span class="offset-2x">2、风疹－重( 风疹红斑 )</span>
+                  </li>
+                  <li><b>诊疗意见：</b>疏肝解郁，和胃降逆，理气化湿。</li>
+                </ul>
+                <div class="blk-1x"></div>
+                <h4><iron-icon icon="silk:prescription"></iron-icon>处方</h4>
+                <div class="prescription c">
+                  <div class="col-md-3">
+                    <ol>
+                      <li>1.
+                        <span>人参</span>
+                        <span>2g</span>
+                      </li>
+                      <li>2.
+                        <span>卜芥</span>
+                        <span>2g</span>
+                      </li>
+                      <li>3.
+                        <span>儿茶</span>
+                        <span>1g</span>
+                      </li>
+                      <li>4.
+                        <span>八角</span>
+                        <span>1g</span>
+                      </li>
+                      <li>5.
+                        <span>川军</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>6.
+                        <span>川乌</span>
+                        <span>1g</span>
+                      </li>
+                      <li>7.
+                        <span>马勃</span>
+                        <span>1.5g</span>
+                      </li>
+                      <li>8.
+                        <span>贝母</span>
+                        <span>1g</span>
+                      </li>
+                      <li>9.
+                        <span>白参</span>
+                        <span>2g</span>
+                      </li>
+                      <li>10.
+                        <span>苁蓉</span>
+                        <span>1.2g</span>
+                      </li>
+                    </ol>
+                  </div>
+                  <div class="col-md-3">
+                    <ol>
+                      <li>11.
+                        <span>竹叶</span>
+                        <span>2g</span>
+                      </li>
+                      <li>12.
+                        <span>芦根</span>
+                        <span>3g</span>
+                      </li>
+                      <li>13.
+                        <span>胆矾</span>
+                        <span>1g</span>
+                      </li>
+                      <li>14.
+                        <span>荠菜</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>15.
+                        <span>莲须</span>
+                        <span>1.5g</span>
+                      </li>
+                      <li>16.
+                        <span>莲子</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>17.
+                        <span>沙棘</span>
+                        <span>1g</span>
+                      </li>
+                      <li>18.
+                        <span>龟甲</span>
+                        <span>1g</span>
+                      </li>
+                      <li>19.
+                        <span>旱芹</span>
+                        <span>1g</span>
+                      </li>
+                      <li>20.
+                        <span>豆豉</span>
+                        <span>1.2g</span>
+                      </li>
+                    </ol>
+                  </div>
+                  <div class="col-md-3">
+                    <ol>
+                      <li>21.
+                        <span>香薷</span>
+                        <span>1.5g</span>
+                      </li>
+                      <li>22.
+                        <span>枳壳</span>
+                        <span>1g</span>
+                      </li>
+                      <li>23.
+                        <span>枳实</span>
+                        <span>12g</span>
+                      </li>
+                      <li>24.
+                        <span>桅子</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>25.
+                        <span>枸杞</span>
+                        <span>1g</span>
+                      </li>
+                      <li>26.
+                        <span>柿蒂</span>
+                        <span>1g</span>
+                      </li>
+                      <li>27.
+                        <span>柿霜</span>
+                        <span>2g</span>
+                      </li>
+                      <li>28.
+                        <span>海马</span>
+                        <span>2g</span>
+                      </li>
+                      <li>29.
+                        <span>海龙</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>30.
+                        <span>海芋</span>
+                        <span>1g</span>
+                      </li>
+                    </ol>
+                  </div>
+                  <div class="col-md-3">
+                    <ol>
+                      <li>31.
+                        <span>海藻</span>
+                        <span>1g</span>
+                      </li>
+                      <li>32.
+                        <span>黄蜡</span>
+                        <span>1g</span>
+                      </li>
+                      <li>33.
+                        <span>黄蘖</span>
+                        <span>2.5g</span>
+                      </li>
+                      <li>34.
+                        <span>菱角</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>35.
+                        <span>菖蒲</span>
+                        <span>2g</span>
+                      </li>
+                      <li>36.
+                        <span>菊苣</span>
+                        <span>1.2g</span>
+                      </li>
+                      <li>37.
+                        <span>菊花</span>
+                        <span>1g</span>
+                      </li>
+                      <li>38.
+                        <span>营实</span>
+                        <span>1g</span>
+                      </li>
+                      <li>39.
+                        <span>菘蓝</span>
+                        <span>2.5g</span>
+                      </li>
+                      <li>40.
+                        <span>梅花</span>
+                        <span>1.2g</span>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="label">
+              <span>2015-06-06</span>
+              <span>创建</span>
+            </div>
+            <div class="mark"> </div>
+            <div class="item-group">
+              <div class="item">
+                <div class="date-time">12:30 （ 由田娜护士创建 ）</div>
+                <b>张琪先生的就诊信息由田娜护士创建于2014.12.28</b> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'patient-encounters',
+      properties: {
+        item: {
+          type: String,
+          notify: true,
+        }
+      },
+      ready: function() {
+        this.item = 'Value';
+      },
+      _showMenu: function() {
+        this.$.menuCollapse.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

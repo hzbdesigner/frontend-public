@@ -1,0 +1,496 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-allergies">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    /*allergy*/
+    
+    .allergy {
+      border: 1px solid var(--box-border-color);
+    }
+    
+    .allergy .add {
+      position: absolute;
+      right: 20px;
+      top: 9px;
+      z-index: 999;
+    }
+    
+    .allergy .tabs-vertical {
+      width: 180px;
+    }
+    
+    .allergy .tabs-vertical li {
+      padding-left: 20px;
+    }
+    
+    .allergy .tabs-vertical li .input-group-addon.fixes {
+      position: relative;
+      left: 0px;
+      padding: 0;
+    }
+    
+    .allergy .tabs-vertical li i {
+      visibility: hidden;
+      padding-right: 10px;
+    }
+    
+    .allergy .tabs-vertical li.active i {
+      visibility: visible;
+      color: #46a4da;
+    }
+    
+    .tabs-vertical {
+      margin: 0;
+      padding: 0;
+      width: 160px;
+      float: left;
+    }
+    
+    .tabs-vertical li {
+      list-style: none;
+      border-bottom: 1px solid var(--box-border-color);
+      border: 1px solid var(--box-border-color);
+      border-top: none;
+      border-left: none;
+      padding: 10px;
+    }
+    
+    .tabs-vertical li:last-child {
+      border-bottom: none;
+    }
+    
+    .tabs-vertical li.active {
+      border-right: 1px solid var(--foreground-color);
+    }
+    
+    .tabs-vertical li a {
+      display: block;
+    }
+    
+    .tab-content.vertical {
+      overflow: hidden;
+    }
+    
+    .border {
+      border-top: none;
+    }
+    
+    #dialog {
+      width: 75%;
+      height: 75%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">过敏信息</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="flex content p-20 vertical-layout">
+            <h4 class="m-0">已选择过敏史</h4>
+            <div class="blk-1x"></div>
+            <div class="bg-pale p-20 clearfix">
+              <ul class="justified2-2 tag">
+                <li>
+                  <span><b>注射青霉素</b> － 皮疹、皮痒、发热（药物过敏）</span>
+                  <span>
+                    <a href="#" class="text-dark">×</a>
+                  </span>
+                </li>
+                <li><b>眼睛干涩</b> － 干燥冬风（环境过敏）
+                  <span>
+                    <a href="#" class="text-dark">×</a>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <paper-header-panel class="flex" id="main" mode="seamed">
+              <div class="paper-header vertical layout">
+                <div class="level2-tab-container horizontal center layout">
+                  <paper-tabs noink attr-for-selected="tabid" selected="{{selectedTab}}">
+                    <paper-tab tabid="med">药物</paper-tab>
+                    <paper-tab tabid="food">食物</paper-tab>
+                    <paper-tab tabid="env">环境</paper-tab>
+                  </paper-tabs>
+                  <div class="flex"></div>
+                </div>
+              </div>
+              <iron-pages attr-for-selected="tabid" selected="{{selectedTab}}">
+                <section class="fit" tabid="med">
+                  <div class="border clearfix">
+                    <ul class="tabs-vertical">
+                      <li class="active"><a href="#"><i class="icon iconfont"></i>甲醛</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>油漆</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>干燥冬风</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>阴雨</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>汽油</a></li>
+                      <li>
+                        <a href="#">
+                          <div class="input-group">
+                            <div class="input-group-addon fixes"><i class="icon iconfont"></i></div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="tab-content vertical clearfix">
+                      <div class="p-20">
+                        <form>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 皮疹、皮痒、发热
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 眼睛红肿
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 腹痛、恶心
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 气管阻塞
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 面部脱皮
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 头痛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 痉挛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 充血
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪、流鼻涕
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 其它
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox">
+                                <input type="text">
+                              </label>
+                            </li>
+                          </ul>
+                          <div class="blk-2x"></div>
+                          <div class="divider solid"></div>
+                          <div class="blk-2x"></div>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 轻微
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 较重
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 严重
+                              </label>
+                            </li>
+                          </ul>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="fit" tabid="food">
+                  <div class="border clearfix">
+                    <ul class="tabs-vertical">
+                      <li class="active"><a href="#"><i class="icon iconfont"></i>甲醛</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>油漆</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>干燥冬风</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>阴雨</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>汽油</a></li>
+                      <li>
+                        <a href="#">
+                          <div class="input-group">
+                            <div class="input-group-addon fixes"><i class="icon iconfont"></i></div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="tab-content vertical clearfix">
+                      <div class="p-20">
+                        <form>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 皮疹、皮痒、发热
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 眼睛红肿
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 腹痛、恶心
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 气管阻塞
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 面部脱皮
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 头痛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 痉挛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 充血
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪、流鼻涕
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 其它
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox">
+                                <input type="text">
+                              </label>
+                            </li>
+                          </ul>
+                          <div class="blk-2x"></div>
+                          <div class="divider solid"></div>
+                          <div class="blk-2x"></div>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 轻微
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 较重
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 严重
+                              </label>
+                            </li>
+                          </ul>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="fit" tabid="env">
+                  <div class="border clearfix">
+                    <ul class="tabs-vertical">
+                      <li class="active"><a href="#"><i class="icon iconfont"></i>甲醛</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>油漆</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>干燥冬风</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>阴雨</a></li>
+                      <li><a href="#"><i class="icon iconfont"></i>汽油</a></li>
+                      <li>
+                        <a href="#">
+                          <div class="input-group">
+                            <div class="input-group-addon fixes"><i class="icon iconfont"></i></div>
+                            <input type="text" class="form-control">
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="tab-content vertical clearfix">
+                      <div class="p-20">
+                        <form>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 皮疹、皮痒、发热
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 眼睛红肿
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 腹痛、恶心
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 气管阻塞
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 面部脱皮
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 头痛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 痉挛
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 充血
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 流泪、流鼻涕
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox"> 其它
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="checkbox">
+                                <input type="text">
+                              </label>
+                            </li>
+                          </ul>
+                          <div class="blk-2x"></div>
+                          <div class="divider solid"></div>
+                          <div class="blk-2x"></div>
+                          <ul class="justified4-4 list-style inline p-5">
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 轻微
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 较重
+                              </label>
+                            </li>
+                            <li>
+                              <label class="label-control">
+                                <input type="radio"> 严重
+                              </label>
+                            </li>
+                          </ul>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </iron-pages>
+            </paper-header-panel>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-allergies',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        selectedTab: {
+          value: 'med',
+          type: String,
+          notify: true
+        },
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

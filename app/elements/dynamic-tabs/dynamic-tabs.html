@@ -1,0 +1,68 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="dynamic-tabs">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      padding: 20px;
+    }
+
+    </style>
+    <paper-scroll-header-panel fixed>
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs id="tabs" noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <content select=".tab"></content>
+          <template is="dom-repeat" items="{{openItems}}">
+            <paper-tab tabid="{{item.id}}">
+              <div horizontal layout>
+                <span>{{item.name}}</span>
+                <paper-icon-button class="small" icon="close" noink on-tap="closeTab"></paper-icon-button>
+              </div>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+      </div>
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <content select=".page"></content>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dynamic-tabs',
+      properties: {
+        selectedTab: {
+          value: 'default',
+          type: String,
+          notify: true
+        },
+        openItems: {
+          type: Array,
+          notify: true,
+          value: []
+        }
+      },
+      listeners: {
+        'open-in-tab': 'openTab'
+      },
+      openTab: function(e) {
+        console.log(e.model.__data__.item);
+      },
+      closeTab: function(e) {
+        var idx = this.openItems.indexOf(e.model.__data__.item);
+        this.splice('openItems', idx, 1);
+        var tabs = this.$.tabs;
+        setTimeout(function() {
+          tabs.select('default');
+        }, 100);
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

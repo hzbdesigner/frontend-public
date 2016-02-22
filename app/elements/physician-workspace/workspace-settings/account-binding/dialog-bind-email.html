@@ -1,0 +1,83 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-bind-email">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 35%;
+      height: 35%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">绑定邮箱</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="flex content vertical-layout">
+            <div class="blk-4x"></div>
+            <div class="form-inline p-container">
+              <div class="form-group">
+                <label class="label-control fixed-md">邮箱:</label>
+                <input type="text" class="form-control" placeholder="请输入邮箱">
+              </div>
+              <div class="form-group">
+                <label class="label-control fixed-md">图片验证码:</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="">
+                  <div class="input-group-addon img"><img src="/images/qrcode-img.jpg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>取消</paper-button>
+          <paper-button id="save" accent>确定</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-bind-email',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        selectedTab: {
+          value: 'med',
+          type: String,
+          notify: true
+        },
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

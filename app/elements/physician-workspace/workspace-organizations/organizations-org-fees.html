@@ -1,0 +1,94 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="organizations-org-fees">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <div class="cards p-20">
+      <div class="row-2x">
+        <div class="col-md-4">
+          <div class="list-item item-border edit bg-gray">
+            <div class="name pull-left">
+              <span class="">诊疗费</span>
+            </div>
+            <span class="pull-right">
+              <paper-icon-button icon="close" class="small"></paper-icon-button>
+            </span>
+            <div class="pull-right">
+              <span class="table-form">
+                <input type="text" class="md">
+                <span class="addon border-l">元</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-item item-border edit bg-gray">
+            <div class="name pull-left">
+              <span class="">诊疗费</span>
+            </div>
+            <span class="pull-right">
+              <paper-icon-button icon="close" class="small"></paper-icon-button>
+            </span>
+            <div class="pull-right">
+              <span class="table-form">
+                <input type="text" class="md">
+                <span class="addon border-l">元</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-item item-border edit bg-gray">
+            <div class="name pull-left">
+              <span class="">诊疗费</span>
+            </div>
+            <span class="pull-right">
+              <paper-icon-button icon="close" class="small"></paper-icon-button>
+            </span>
+            <div class="pull-right">
+              <span class="table-form">
+                <input type="text" class="md">
+                <span class="addon border-l">元</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="blk-1x"></div>
+        <div class="col-md-4">
+          <div class="list-item addon list-item-control">
+            <div class="input-group">
+              <input class="form-control" placeholder="请输入费用名称">
+              <div class="input-group-btn">
+                <span class="table-form border">
+                  <input type="text" class="md">
+                  <span class="addon border-l">元</span>
+                </span>
+              </div>
+              <div class="input-group-btn">
+                <paper-button secondary>添加</paper-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'organizations-org-fees',
+    });
+  })();
+  </script>
+</dom-module>

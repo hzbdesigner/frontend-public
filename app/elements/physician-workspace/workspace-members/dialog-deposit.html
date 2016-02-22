@@ -1,0 +1,98 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-deposit">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 600px;
+      height: 50%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">充值</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="content">
+            <div class="p-20 well-sm">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label class="label-control fixed-md">患者姓名:</label>
+                  <span>夏珂征</span> </div>
+                <div class="form-group">
+                  <label class="label-control fixed-md">账户余额:</label>
+                  <span class="text-danger">¥68.00</span> </div>
+                <div class="form-group">
+                  <label class="label-control fixed-md">充值金额:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">元</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label-control fixed-md">奖励金额:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">元</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>取消</paper-button>
+          <paper-button id="next" accent>下一步</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+    <dialog-general-billing id="pay"></dialog-general-billing>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-deposit',
+      listeners: {
+        'next.tap': '_pay',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      ready: function() {
+        this.$.pay.previousDialog = this.$.dialog;
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _pay: function() {
+        this.$.dialog.toggle();
+        this.$.pay.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

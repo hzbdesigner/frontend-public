@@ -1,0 +1,95 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="search-toolbar">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--foreground-color);
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--shade-color);
+    }
+    
+    .searchbox {
+      background-color: var(--foreground-color)!important;
+      ;
+    }
+    
+    paper-toolbar {
+      background-color: white!important;
+    }
+    
+    paper-toolbar::content #topBar {
+      padding: 0 20px;
+      background-color: var(--foreground-color)!important;
+    }
+    
+    input {
+      background-color: var(--foreground-color);
+      border: 1px solid var(--light-primary-color);
+      width: 300px;
+      color: var(--disabled-text-color);
+      padding: 6px 8px;
+      border-radius: 0px;
+      transition: all 0.25s ease 0s;
+    }
+    
+    input:focus {
+      width: 400px;
+      border: 1px solid var(--default-primary-color);
+      color: var(--dark-primary-color);
+    }
+    
+    iron-icon {
+      position: relative;
+      right: 40px;
+      color: var(--light-primary-color);
+    }
+    
+    paper-button {
+      min-width: 120px;
+    }
+
+    </style>
+    <div>
+      <paper-toolbar>
+        <div class="searchbox">
+          <input is="iron-input" bind-value="{{query}}" placeholder="[[searchHint]]" />
+          <iron-icon icon="search"></iron-icon>
+        </div>
+        <div class="flex"></div>
+        <paper-button id="button" primary>[[buttonLabel]]</paper-button>
+      </paper-toolbar>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'search-toolbar',
+      properties: {
+        buttonLabel: {
+          type: String,
+          notify: true
+        },
+        query: {
+          type: String,
+          notify: true
+        },
+        searchHint: {
+          type: String
+        }
+      },
+      listeners: {
+        'button.tap': '_buttonTap'
+      },
+      _buttonTap: function() {
+        this.fire('search-bar-button-tap');
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

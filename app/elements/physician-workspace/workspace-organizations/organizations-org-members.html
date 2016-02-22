@@ -1,0 +1,266 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="organizations-org-members">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+
+    </style>
+    <div class="cards p-20">
+      <div class="row">
+        <div class="col-md-4">
+          <h4 class="m-0">已邀请</h4></div>
+        <div class="col-md-8 text-right">
+          <paper-button primary on-tap="_toggleDialogInviteMember">邀请</paper-button>
+        </div>
+      </div>
+      <div class="blk-1x"></div>
+      <table class="table m-0 table-hover text-center team-table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-left">邀请</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo1.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <paper-button secondary>删除</paper-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="blk-2x"></div>
+      <table class="table m-0 table-hover text-center team-table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-left">成员</th>
+            <th>职务</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo1.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <select>
+                <option>医生</option>
+                <option>前台</option>
+                <option>护士</option>
+              </select>
+            </td>
+            <td>
+              <span class="inline-block">
+                <span class="group-span-1x">
+                  <span>
+                    <paper-button secondary>删除</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary>停用</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary on-tap="_setPrivileges">权限设置</paper-button>
+                  </span>
+                </span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo2.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <select>
+                <option>医生</option>
+                <option>前台</option>
+                <option>护士</option>
+              </select>
+            </td>
+            <td>
+              <span class="inline-block">
+                <span class="group-span-1x">
+                  <span>
+                    <paper-button secondary>删除</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary>停用</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary on-tap="_setPrivileges">权限设置</paper-button>
+                  </span>
+                </span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo3.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <select>
+                <option>医生</option>
+                <option>前台</option>
+                <option>护士</option>
+              </select>
+            </td>
+            <td>
+              <span class="inline-block">
+                <span class="group-span-1x">
+                  <span>
+                    <paper-button secondary>删除</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary>停用</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary on-tap="_setPrivileges">权限设置</paper-button>
+                  </span>
+                </span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo4.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <select>
+                <option>医生</option>
+                <option>前台</option>
+                <option>护士</option>
+              </select>
+            </td>
+            <td>
+              <span class="inline-block">
+                <span class="group-span-1x">
+                  <span>
+                    <paper-button secondary>删除</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary>停用</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary on-tap="_setPrivileges">权限设置</paper-button>
+                  </span>
+                </span>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="team-v">
+                <div class="team-photo">
+                  <img src="/images/photo5.png" alt="" class="img-circle">
+                </div>
+                <div class="team-info">
+                  <h3>张琪</h3>
+                  <span class="offset-2x">男</span>
+                  <p>15678904568</p>
+                </div>
+              </div>
+            </th>
+            <td>
+              <select>
+                <option>医生</option>
+                <option>前台</option>
+                <option>护士</option>
+              </select>
+            </td>
+            <td>
+              <span class="inline-block">
+                <span class="group-span-1x">
+                  <span>
+                    <paper-button secondary>删除</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary>停用</paper-button>
+                  </span>
+                  <span>
+                    <paper-button secondary on-tap="_setPrivileges">权限设置</paper-button>
+                  </span>
+                </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <dialog-invite-member id="dialogInviteMember"></dialog-invite-member>
+    <dialog-set-privileges id="dialogSetPrivileges"></dialog-set-privileges>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'organizations-org-members',
+      _toggleDialogInviteMember: function() {
+        this.$.dialogInviteMember.toggle();
+      },
+      _setPrivileges: function(e) {
+        console.log(e);
+        this.$.dialogSetPrivileges.toggle();
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-organizations">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      padding: var(--workspace-padding);
+    }
+    </style>
+    <paper-scroll-header-panel fixed>
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs id="tabs" noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="list">
+            机构</paper-tab>
+          <template is="dom-repeat" items="{{_openItems}}">
+            <paper-tab tabid="{{item.id}}">
+              <div horizontal layout>
+                <span>{{item.name}}</span>
+                <paper-icon-button class="small" icon="silk:times" noink on-tap="_closeTab"></paper-icon-button>
+              </div>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+      </div>
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <organizations-list tabid="list" class="flex"></organizations-list>
+        <template is="dom-repeat" items="{{_openItems}}">
+          <organizations-org patient-id="{{item.id}}" tabid="{{item.id}}" class="flex"></organizations-org>
+        </template>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-organizations',
+      properties: {
+        selectedTab: {
+          value: 'list',
+          type: String,
+          notify: true
+        },
+        _openItems: {
+          type: Array,
+          notify: true,
+          value: []
+        }
+      },
+      listeners: {
+        'open-in-tab': '_openTab'
+      },
+      _openTab: function(e) {
+        var model = e.detail;
+        var idx = this._openItems.indexOf(model);
+        if (idx === -1) {
+          this.push('_openItems', model);
+        }
+        this._asyncSelectTab(model.id);
+      },
+      _closeTab: function(e) {
+        var idx = this._openItems.indexOf(e.model.__data__.item);
+        this.splice('_openItems', idx, 1);
+        this._asyncSelectTab('list');
+      },
+      _asyncSelectTab: function(tab) {
+        var tabs = this.$.tabs;
+        setTimeout(function() {
+          tabs.select(tab);
+        }, 10);
+      }
+    });
+  })();
+  </script>
+</dom-module>

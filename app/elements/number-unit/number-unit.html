@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="number-unit">
+  <template>
+    <style>
+    :host {
+      display: inline-block;
+    }
+    
+    .container {
+      border: 1px solid red;
+    }
+    
+    .container > div {
+      height: 40px;
+    }
+    </style>
+    <div class="container horizontal layout">
+      <div>
+        <input is="iron-input" value="{{number::input}}">
+      </div>
+      <div class="flex"></div>
+      <div>[[unit]]</div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'number-unit',
+      properties: {
+        number: {
+          type: Number,
+          value: null,
+          notify: true
+        },
+        unit: {
+          type: String,
+          value: '',
+          notify: false
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

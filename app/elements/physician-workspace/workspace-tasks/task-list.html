@@ -1,0 +1,56 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="task-list">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    .toolbar-tools.paper-toolbar {
+      padding: 0;
+    }
+    </style>
+    <paper-scroll-header-panel fixed class="fit">
+      <search-toolbar id="search-toolbar" class="paper-header" button-label="新消息" search-hint="输入患者姓名，证件号码..."></search-toolbar>
+      <div class="cards p-container">
+        <div class="vertical-item tasks">
+          <div class="blk-2x"></div>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <one-task></one-task>
+          <div class="blk-4x"></div>
+        </div>
+      </div>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'task-list',
+      properties: {
+        query: {
+          value: '请输入患者名字/生分证搜索',
+          type: String,
+          notify: true,
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

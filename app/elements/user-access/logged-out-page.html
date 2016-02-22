@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="logged-out-page">
+  <template>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    .center-block {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%)
+    }
+    </style>
+    <div class="center-block">
+      已经登出系统
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'logged-out-page'
+    });
+  })();
+  </script>
+</dom-module>

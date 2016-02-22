@@ -1,0 +1,139 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-batch-edit-drugs">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 600px;
+      height: 50%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">批量编辑</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="content">
+
+      <div class="well-sm p-30">
+
+        <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-md">用药类型:</label>
+              <select title="国家基本药物">
+                <option></option>
+                <option></option>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">剂量:</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">库存报警:</label>
+              <input type="text" class="form-control">
+            </div>
+ 
+            <div class="form-group">
+              <label class="label-control fixed-md">最小单位:</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">药品来源:</label>
+              <select>
+                <option></option>
+                <option></option>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">基本药物:</label>
+              <select title="国家基本药物">
+                <option></option>
+                <option></option>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">生产厂家:</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">药品状态:</label>
+              <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">发票项目:</label>
+              <select>
+                <option></option>
+                <option></option>
+                <option></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="label-control fixed-md">备注:</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+
+    
+ 
+    </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-batch-edit-drugs',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

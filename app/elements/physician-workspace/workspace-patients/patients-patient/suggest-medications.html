@@ -1,0 +1,121 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="suggest-medications">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    .table-nowrap td,
+    .table-nowrap th {
+      white-space: nowrap;
+    }
+    </style>
+    <div class="vertical layout">
+      <!--       <template is="dom-repeat" items="{{suggests}}">
+        <suggesting-item suggest="{{item}}">
+          <div class="horizontal layout">
+            <div>{{item.name}}</div>
+            <div>{{item.id}}</div>
+          </div>
+        </suggesting-item>
+      </template> -->
+      <div class="p-section"><b class="text-info">西药</b></div>
+      <table class="table m-0 table-hover table-nowrap text-center">
+        <thead>
+          <tr>
+            <th class="text-left">药品名称</th>
+            <th>药品规格</th>
+            <th class="text-left">生产厂家</th>
+            <th>价格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-left">M氨酚伪麻美芬片(白加黑)</th>
+            <td>1片/片*15/盒</td>
+            <td>拜耳医药保健有限公司启东公司</td>
+            <td>¥56.00</td>
+          </tr>
+          <tr>
+            <th class="text-left">地塞米松磷酸钠注射液</th>
+            <td>1片/片*15/盒</td>
+            <td class="text-left">西南药业股份有限公司</td>
+            <td>¥56.00</td>
+          </tr>
+          <tr>
+            <th class="text-left">小儿氨酚黄那敏颗粒(果娃)</th>
+            <td>5毫克/支*10/盒</td>
+            <td class="text-left">地奥集团成都药业股份有限公司</td>
+            <td>¥56.00</td>
+          </tr>
+          <tr>
+            <th class="text-left">盐酸普奈洛尔片(心得安)</th>
+            <td>10毫克/片*100/瓶</td>
+            <td class="text-left">拜耳医药保健有限公司启东公司</td>
+            <td>¥56.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="divider solid"></div>
+      <div class="p-section">
+        <b class="text-info">中药</b></div>
+      <table class="table m-0 table-hover table-nowrap text-center">
+        <tbody>
+          <tr>
+            <th class="text-left">沙棘</th>
+            <td>1g/g*0000</td>
+            <td>¥0.60</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="divider solid"></div>
+      <div class="p-section">
+        <b class="text-info">模板</b></div>
+      <div class="divider solid"></div>
+      <ul class="list-style none p list-hover list-border">
+        <li>风寒感冒</li>
+      </ul>
+    </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'suggest-medications',
+      properties: {
+        suggests: {
+          type: Array,
+          notify: true,
+        }
+      },
+      // must provide a `search` method
+      search: function(s) {
+        if (s === 'empty') {
+          this.suggests = [];
+        } else {
+          this.suggests = [{
+            id: 'aaa',
+            name: '小儿克喘胶囊'
+          }, {
+            id: 'bbb',
+            name: '牛黄解毒片'
+          }, {
+            id: 'bbb',
+            name: '牛黄解毒片'
+          }, {
+            id: 'bbb',
+            name: '牛黄解毒片'
+          }, {
+            id: 'bbb',
+            name: '牛黄解毒片'
+          }];
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

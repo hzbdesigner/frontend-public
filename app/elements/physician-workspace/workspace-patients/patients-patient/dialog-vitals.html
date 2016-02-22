@@ -1,0 +1,134 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-vitals">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 640px;
+      height: 300px!important;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">患者体征</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="content">
+            <div class="blk-3x"></div>
+            <form class="form-inline">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">身高:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">cm</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">体重:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">kg</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">体温:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">℃</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">脉搏:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">次/分</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">心率:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">次/分</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label-control fixed-sm">血压:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon center">-</div>
+                      <input type="text" class="form-control">
+                      <div class="input-group-addon">mmhg</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" accent>放弃保存并关闭</paper-button>
+          <paper-button id="save" primary>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-vitals',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

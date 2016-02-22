@@ -1,0 +1,137 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-general-billing">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    /*allergy*/
+    
+    #dialog {
+      width: 640px;
+      height: 550px;
+    }
+    
+    paper-tabs {
+      padding-top: 40px;
+      height: 100%
+    }
+    
+    paper-tab {
+      padding: 0 5px;
+    }
+    
+    paper-tab span {
+      height: 50px;
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid var(--box-border-color);
+    }
+    
+    paper-tab span img {
+      width: 40px;
+      padding-right: 10px;
+      vertical-align: middle;
+    }
+    
+    paper-tab.iron-selected span {
+      border: 1px solid var(--default-primary-color);
+    }
+    
+    .qrcode img {
+      width: 50%;
+      border: 1px solid var(--box-border-color);
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <div class="paper-header">
+            <paper-toolbar mode="seamed">
+              <h2 class="modal-title">收费</h2>
+              <div class="flex"> </div>
+              <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+            </paper-toolbar>
+            <div class=" horizontal center layout">
+              <div class="flex"></div>
+              <paper-tabs noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+                <paper-tab tabid="cash">
+                  <span><img src="/images/pay-cash.png">现金</span>
+                </paper-tab>
+                <paper-tab tabid="pos">
+                  <span><img src="/images/pay-yinlian.png">POS机</pan>
+                </paper-tab>
+                <paper-tab tabid="wechat">
+                  <span><img src="/images/pay-weixin.png">微信</span>
+                </paper-tab>
+                <paper-tab tabid="alipay">
+                  <span><img src="/images/pay-zhifubao.png">支付宝</span>
+                </paper-tab>
+              </paper-tabs>
+              <div class="flex"></div>
+            </div>
+          </div>
+          <iron-pages class="flex content" attr-for-selected="tabid" selected="{{selectedTab}}">
+            <div tabid="cash" class="flex">
+              <div class="p-20 text-center">
+                <paper-button primary class="bt
+            btn-lg">确认支付</paper-button>
+              </div>
+            </div>
+            <div tabid="pos" class="flex qrcode">
+              <div class="p-20 text-center"><img src="/images/qrcode.png"></div>
+            </div>
+            <div tabid="wechat" class="flex qrcode">
+              <div class="p-20 text-center"><img src="/images/qrcode.png"></div>
+            </div>
+            <div tabid="alipay" class="flex qrcode">
+              <div class="p-20 text-center"><img src="/images/qrcode.png"></div>
+            </div>
+          </iron-pages>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="prev" accent>上一步</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-general-billing',
+      listeners: {
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel',
+        'prev.tap': '_prev'
+      },
+      properties: {
+        selectedTab: {
+          value: 'cash',
+          type: 'String',
+          notify: true
+        },
+        previousDialog: {
+          type: Object,
+          notify: true,
+          value: {}
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _prev: function() {
+        this.$.dialog.toggle();
+        this.previousDialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

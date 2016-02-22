@@ -1,0 +1,96 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-tasks">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--shade-color);
+      padding: var(--workspace-padding);
+    }
+    
+    paper-icon-button.small {
+      height: 30px;
+      width: 30px;
+      color: var(--secondary-text-color);
+      padding-right: 0;
+      padding-left: 0;
+      margin-right: -30px;
+    }
+    
+    paper-icon-button.small:hover {
+      color: var(--default-primary-color);
+    }
+    
+    iron-pages {
+      padding: 20px;
+      background-color: var(--foreground-color);
+    }
+    
+    paper-icon-button.small {
+      height: 30px;
+      width: 30px;
+      color: var(--secondary-text-color);
+      padding-right: 0;
+      padding-left: 0;
+      margin-right: -30px;
+    }
+    
+    paper-icon-button.small:hover {
+      color: var(--default-primary-color);
+    }
+    
+    iron-pages {
+      padding: 20px;
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <paper-scroll-header-panel fixed>
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="new">
+            <div class="relative">
+              <i>未处理</i>
+              <paper-badge label="3"></paper-badge>
+            </div>
+          </paper-tab>
+          <paper-tab tabid="archived">
+            <div>
+              已处理
+            </div>
+          </paper-tab>
+          <paper-tab tabid="sent">
+            <div>
+              已发送
+            </div>
+          </paper-tab>
+        </paper-tabs>
+      </div>
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <task-list tabid="new" class="flex"></task-list>
+        <!-- ARCHIVED -->
+        <task-list tabid="archived" class="flex cards p-20">
+        </task-list>
+        <!-- SENT -->
+        <task-list tabid="sent" class="flex cards p-20">
+        </task-list>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-tasks',
+      properties: {
+        selectedTab: {
+          value: 'new',
+          type: String,
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

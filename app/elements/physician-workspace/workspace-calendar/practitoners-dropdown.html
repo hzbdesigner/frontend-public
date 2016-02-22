@@ -1,0 +1,58 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="practitoners-dropdown">
+  <template>
+    <style include="shared-styles">
+    :host {
+      display: inline-block;
+      height: 40px;
+      /* 目测经验值 */
+      min-width: 100px;
+    }
+    
+    #dropdown {
+      border: 1px solid var(--shade-color);
+      padding-left: 20px;
+    }
+    
+    #label {
+      padding-right: 10px;
+      display: none;
+    }
+    
+    paper-dropdown-menu#dropdown::content input {
+      color: #212121!important;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    </style>
+    <div class="horizontal center layout">
+      <div id="label"> 请选择医护人员</div>
+      <paper-dropdown-menu id="dropdown" no-label-float noink no-animations>
+        <paper-menu class="dropdown-content" selected="0">
+          <paper-item>我自己</paper-item>
+          <paper-item>Donut</paper-item>
+          <paper-item>Financier</paper-item>
+          <paper-item>Madeleine</paper-item>
+        </paper-menu>
+      </paper-dropdown-menu>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'practitoners-dropdown',
+      properties: {
+        item: {
+          type: String,
+          notify: true,
+        }
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

@@ -1,0 +1,194 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-reports">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      padding: var(--workspace-padding);
+    }
+    
+    .dashboard {
+      padding: 20px;
+    }
+    
+    .dashboard .icon-box {
+      display: table-cell;
+      width: 43px;
+      height: 40px;
+      box-shadow: none;
+    }
+    
+    .dashboard .info {
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 20px;
+    }
+    
+    .dashboard .info b {
+      font-size: 1.2em;
+    }
+    
+    .dashboard .info em {
+      font-size: 0.8em;
+    }
+    
+    .dashboard .info em,
+    .dashboard .info b {
+      display: block;
+      font-style: normal;
+    }
+    </style>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="dashboard cards">
+          <div class="icon-box circle bg-info"></div>
+          <div class="info"><b>¥8790.00</b><em class="text-dark">昨日收入</em></div>
+        </div>
+        <div class="cards">
+          <div class="s">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="dashboard cards">
+          <div class="icon-box circle bg-success"></div>
+          <div class="info"><b>86人</b><em class="text-dark">昨日就诊人数</em></div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="col-md-6">
+        <div class="cards">
+          <div class="section-heading p-section"><b>疾病统计</b></div>
+          <div class="divider solid"></div>
+          <div class="p-20"></div>
+          <chart-doughnut data="[[data1]]" options="[[options]]"></chart-doughnut>
+          <div class="p-20">
+            <ul>
+              <li>疾病种类</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="cards">
+          <div class="section-heading p-section"><b>药品统计</b></div>
+          <div class="divider solid"></div>
+          <div class="p-20"></div>
+          <chart-doughnut data="[[data2]]" options="[[options]]"></chart-doughnut>
+          <div class="p-20">
+            <ul>
+              <li>药品用量</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="col-md-6">
+        <div class="cards">
+          <div class="section-heading p-section"><b>人群统计</b></div>
+          <div class="divider solid"></div>
+          <div class="p-20"></div>
+          <chart-doughnut data="[[data3]]" options="[[options]]"></chart-doughnut>
+          <div class="p-20">
+            <ul>
+              <li>年龄</li>
+              <li>性别</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="cards">
+          <div class="section-heading p-section"><b>收入统计</b></div>
+          <div class="divider solid"></div>
+          <div class="p-20"></div>
+          <chart-doughnut data="[[data1]]" options="[[options]]"></chart-doughnut>
+          <div class="p-20">
+            <ul>
+              <li>收费类型</li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'workspace-reports',
+      properties: {
+        data1: {
+          type: Object,
+          notify: true,
+          value: [{
+            value: 300,
+            color: '#F7464A',
+            highlight: '#FF5A5E',
+            label: 'Red'
+          }, {
+            value: 50,
+            color: '#46BFBD',
+            highlight: '#5AD3D1',
+            label: 'Green'
+          }, {
+            value: 100,
+            color: '#FDB45C',
+            highlight: '#FFC870',
+            label: 'Yellow'
+          }]
+        },
+        data2: {
+          type: Object,
+          notify: true,
+          value: [{
+            value: 300,
+            color: '#F7464A',
+            highlight: '#FF5A5E',
+            label: 'Red'
+          }, {
+            value: 50,
+            color: '#46BFBD',
+            highlight: '#5AD3D1',
+            label: 'Green'
+          }, {
+            value: 100,
+            color: '#FDB45C',
+            highlight: '#FFC870',
+            label: 'Yellow'
+          }]
+        },
+        data3: {
+          type: Object,
+          notify: true,
+          value: [{
+            value: 300,
+            color: '#F7464A',
+            highlight: '#FF5A5E',
+            label: 'Red'
+          }, {
+            value: 50,
+            color: '#46BFBD',
+            highlight: '#5AD3D1',
+            label: 'Green'
+          }, {
+            value: 100,
+            color: '#FDB45C',
+            highlight: '#FFC870',
+            label: 'Yellow'
+          }]
+        },
+        options: {
+          type: Object,
+          notify: true,
+          value: {
+            responsive: true
+          }
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

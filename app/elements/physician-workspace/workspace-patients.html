@@ -1,0 +1,105 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-patients">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--shade-color);
+      padding: var(--workspace-padding);
+    }
+    
+    iron-pages {
+      padding: 20px;
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <paper-scroll-header-panel fixed>
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="list">
+            所有患者</paper-tab>
+          <paper-tab tabid="recent">
+            最近浏览</paper-tab>
+          <template is="dom-repeat" items="{{patientsShown}}">
+            <paper-tab tabid="{{item.id}}">
+              <div horizontal layout>
+                <span>{{item.id}}</span>
+                <paper-icon-button class="small" icon="silk:times" noink on-tap="closePatient"></paper-icon-button>
+              </div>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+      </div>
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <patients-list tabid="list" class="flex"></patients-list>
+        <patients-recent-visited tabid="recent" class="flex"></patients-recent-visited>
+        <template is="dom-repeat" items="{{patientsShown}}">
+          <patients-patient patient-id="{{item.id}}" tabid="{{item.id}}" class="flex"></patients-patient>
+        </template>
+      </iron-pages>
+    </paper-scroll-header-panel>
+    <dialog-edit-profile id="dialogEditProfile"></dialog-edit-profile>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-patients',
+      listeners: {
+        'search-bar-button-tap': '_showDialogNewPatient',
+        'edit-patient-profile': '_showDialogEditPatient'
+      },
+      _showDialogNewPatient: function() {
+        this.$.dialogEditProfile.toggle();
+      },
+      _showDialogEditPatient: function() {
+        this.$.dialogEditProfile.toggle();
+      },
+      properties: {
+        selectedTab: {
+          value: '欧阳',
+          type: String,
+          notify: true
+        },
+        patientsShown: {
+          type: Array,
+          value: [{
+            id: '欧阳'
+          }, {
+            id: '林凤娇'
+          }],
+          notify: true
+        }
+      },
+      showPatient: function(patient) {
+        console.log(this.patientsShown);
+        console.log(patient);
+        console.log(this.patientsShown.indexOf(patient));
+
+        var found = false;
+        for (var i = 0; i < this.patientsShown.length; i++) {
+          if (this.patientsShown[i].id === patient.id) {
+            found = true;
+          }
+        }
+
+        if (found === false) {
+          this.push('patientsShown', patient);
+        }
+        this.selectedTab = patient.id;
+        console.log('show patient: ' + patient);
+
+        console.log(this.patientsShown);
+        console.log(this.selectedTab);
+      },
+      closePatient: function(e) {
+        console.log('closePatient: ' + e.model.item.id);
+        this.selectedTab = 'all';
+        console.log(this.selectedTab);
+      }
+    });
+  })();
+  </script>
+</dom-module>

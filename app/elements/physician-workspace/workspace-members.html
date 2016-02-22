@@ -1,0 +1,230 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-members">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    .container {
+      margin: var(--workspace-padding);
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <div class="container vertical layout fit">
+      <paper-scroll-header-panel fixed class="flex">
+        <!-- header  -->
+        <div class="paper-header vertical layout">
+          <div class="cards p-20">
+            <div class="filter">
+              <div class="form-inline">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group m-0">
+                      <label class="label-control">账户余额</label>
+                      <select class="form-control">
+                        <option>全部</option>
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group m-0">
+                      <label class="label-control">会员姓名或手机号</label>
+                      <input type="text" placeholder="" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <paper-button primary on-tap="_addPatient">新增患者档案</paper-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider solid"></div>
+          <div class="p-20 cards clearfix">
+            <div class="row-2x">
+              <div class="group-span-2x">
+                <span>会员总数：<b class="text-danger">245</b>（欠费会员28 ）</span>
+                <span>会费总额：<b class="text-danger">¥5688.00</b> 种</span>
+              </div>
+            </div>
+          </div>
+          <div class="divider solid"></div>
+        </div>
+        <!-- main content -->
+        <div class="fit main vertical layout">
+          <!-- table -->
+          <div class="flex">
+            <div class="cards">
+              <div class="p-20">
+                <table class="table table-hover table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th class="text-left">患者</th>
+                      <th>手机号</th>
+                      <th>账户总额</th>
+                      <th>充值</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-left"><b><a href="＃" class="text-info">陈宇</a></b>
+                        <span class="offset-1x">男</span>
+                        <span class="offset-1x">34岁</span>
+                      </td>
+                      <td>156789004567</td>
+                      <td>¥23.45</td>
+                      <td>
+                        <span>
+                          <paper-button secondary on-tap="_showDepositDialog">充值</paper-button>
+                        </span>
+                        <span class="offset-2x">
+                          <paper-button noink link on-tap="_showDepositRecords">充值记录</paper-button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left"><b><a href="＃" class="text-info">王四环</a></b>
+                        <span class="offset-1x">女</span>
+                        <span class="offset-1x">27岁</span>
+                      </td>
+                      <td>156789004567</td>
+                      <td>¥23.45</td>
+                      <td>
+                        <span>
+                          <paper-button secondary on-tap="_showDepositDialog">充值</paper-button>
+                        </span>
+                        <span class="offset-2x">
+                          <paper-button noink link on-tap="_showDepositRecords">充值记录</paper-button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left"><b><a href="＃" class="text-info">于建军</a></b>
+                        <span class="offset-1x">男</span>
+                        <span class="offset-1x">56岁</span>
+                      </td>
+                      <td>156789004567</td>
+                      <td>¥23.45</td>
+                      <td>
+                        <span>
+                          <paper-button secondary on-tap="_showDepositDialog">充值</paper-button>
+                        </span>
+                        <span class="offset-2x">
+                          <paper-button noink link on-tap="_showDepositRecords">充值记录</paper-button>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left"><b><a href="＃" class="text-info">徐茹已</a></b>
+                        <span class="offset-1x">女</span>
+                        <span class="offset-1x">32岁</span>
+                      </td>
+                      <td>156789004567</td>
+                      <td>¥23.45</td>
+                      <td>
+                        <span>
+                          <paper-button secondary on-tap="_showDepositDialog">充值</paper-button>
+                        </span>
+                        <span class="offset-2x">
+                          <paper-button noink link on-tap="_showDepositRecords">充值记录</paper-button>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="blk-2x"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </paper-scroll-header-panel>
+      <!-- footer -->
+      <div class="divider solid"></div>
+      <div class="cards">
+        <div class="p-20">
+          <div class="row-2x">
+            <div class="col-md-4 pagination-setting">
+              <div class="row-1x">
+                <div class="group-span-1x">
+                  <span>每页</span>
+                  <span>
+                    <select>
+                      <option>10</option>
+                      <option>20</option>
+                    </select>
+                  </span>
+                  <span>条</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 text-right">
+              <ul class="pagination list-style none inline-block vm">
+                <li>
+                  <a href="#"><i>&lt;</i></a>
+                </li>
+                <li>
+                  <a href="#">1</a>
+                </li>
+                <li class="active">
+                  <a href="#">2</a>
+                </li>
+                <li>
+                  <a href="#">3</a>
+                </li>
+                <li>
+                  <a href="#">4</a>
+                </li>
+                <li>
+                  <a href="#">5</a>
+                </li>
+                <li>
+                  <a href="javsript:void">…</a>
+                </li>
+                <li>
+                  <a href="#"><i>&gt;</i></a>
+                </li>
+              </ul>
+              <div class="pagination-quick vm offset-2x">
+                <span>转到</span>
+                <span class="offset-s">
+                  <select>
+                    <option>1</option>
+                    <option>2</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="blk-1x"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Dialogs -->
+    <dialog-deposit id="depositDialog"></dialog-deposit>
+    <dialog-deposit-records id="depositRecordsDialog"></dialog-deposit-records>
+    <dialog-edit-profile id="addPatientDialog"></dialog-edit-profile>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-members',
+      _showDepositDialog: function(e) {
+        console.log(e);
+        this.$.depositDialog.toggle();
+      },
+      _showDepositRecords: function(e) {
+        console.log(e);
+        this.$.depositRecordsDialog.toggle();
+      },
+      _addPatient: function() {
+        this.$.addPatientDialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

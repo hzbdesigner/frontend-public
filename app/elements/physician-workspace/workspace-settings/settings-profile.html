@@ -1,0 +1,103 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="settings-profile">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    .profile .photo .mask {
+      display: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 200px;
+      background: rgba(0, 0, 0, .1);
+      line-height: 200px;
+    }
+    
+    .profile .photo .mask a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+    }
+    
+    .profile .photo:hover .mask {
+      display: block;
+    }
+    
+    .profile .photo {
+      position: relative;
+      width: 200px;
+      float: right;
+      margin-left: 100px;
+      text-align: center;
+    }
+    
+    .profile .photo img {
+      width: 100%;
+    }
+    
+    .profile textarea {
+      min-height: 120px;
+    }
+    
+    .profile .input-group-addon.img {
+      min-width: 90px;
+      text-align: center;
+      background: var(--foreground-color);
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <div class="cards p-20">
+      <div class="blk-2x"></div>
+      <div class="well-box profile col-md-10">
+        <div class="pull-well photo"> <img src="/images/photo1.png" alt="">
+          <div class="mask"><a href="#">点击上传照片</a></div>
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg">真实姓名:</label>
+              <span>张琪</span>
+            </div>
+            <div class="form-group">
+              <label class="label-control fixed-lg">邮箱:</label>
+              <span>zhangqi@163.com</span>
+            </div>
+            <div class="form-group">
+              <label class="label-control fixed-lg">手机号:</label>
+              <span>15689890045</span>
+            </div>
+            <div class="form-group">
+              <label class="label-control fixed-lg vt">个人介绍:</label>
+              <textarea class="form-control">小儿反复呼吸道感染、反复咳嗽；小儿哮喘病、小儿心脏病、新生儿黄疸、新生儿缺血缺氧性脑病；小儿腹泻病、小儿多动症、厌食症、再发性腹痛、微量元素缺乏综合症，小儿肾炎及小儿各类疑难杂症。</textarea>
+            </div>
+            <div class="blk-1x"></div>
+            <div class="form-group">
+              <label class="label-control fixed-lg"></label>
+              <paper-button primary class="btn-block">确定</paper-button>
+            </div>
+            <div class="blk-2x"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'settings-profile',
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,69 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="user-access">
+  <template>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      min-height: 800px;
+      width: 100%;
+      height: 100vh;
+      background: url(/images/bg.png) no-repeat;
+      background-size: cover;
+    }
+    
+    .fullscreen-mask {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    footer {
+      line-height: 80px;
+      font-size: 0.8em;
+      color: white;
+    }
+    
+    paper-material {
+      background-color: var(--foreground-color);
+      padding: 80px 160px;
+    }
+    
+    .brand {
+      width: 190px;
+    }
+    
+    ::content {
+      min-width: 500px;
+    }
+
+    </style>
+    <div class="vertical fit layout">
+      <div class="fullscreen-mask fit"></div>
+      <div class="vertical flex center-justified center layout">
+        <paper-material elevation="1">
+          <div class="account-heading">
+            <div class="center vertical layout">
+              <img src="/images/brand.png" alt="和金云诊所" class="brand" />
+            </div>
+          </div>
+          <div class="blk-5x"></div>
+          <div class="horizontal center center-justified layout">
+            <content></content>
+          </div>
+        </paper-material>
+      </div>
+      <footer class="center vertical layout">
+        版权所有 © 2016 和金云诊所 京ICP备15047050号-1
+      </footer>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'user-access'
+    });
+  })();
+
+  </script>
+</dom-module>
+

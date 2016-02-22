@@ -1,0 +1,87 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="patient-encounter">
+  <template>
+    <style>
+    :host {
+      display: block;
+      @apply(--layout-vertical);
+      @apply(--layout-center-justified);
+      padding: 10px 20px 20px 20px;
+      --header-height: 36px;
+    }
+    
+    .wrapper {
+      background-color: var(--foreground-color);
+      border: 1px solid var(--shade-color);
+    }
+    
+    .header {
+      height: var(--header-height);
+      margin-bottom: 10px;
+    }
+    
+    .name,
+    .person {
+      padding-right: 10px;
+      color: var(--secondary-text-color);
+    }
+    
+    .name {
+      font-weight: 500;
+    }
+    
+    .person {
+      font-weight: 200;
+    }
+    
+    :host(:hover) .header::content paper-icon-button {
+      opacity: 1;
+    }
+    
+    :host .header::content paper-icon-button:hover {
+      color: var(--default-primary-color);
+    }
+    
+    :host .header::content paper-icon-button {
+      height: var(--header-height);
+      width: var(--header-height);
+      color: var(--disabled-text-color);
+      opacity: 0;
+    }
+    
+    :host[noborder] .wrapper {
+      border: none;
+    }
+
+    </style>
+    <div class="header horizontal end layout">
+      <div class="name">处方</div>
+      <div class="person">（李凤萍）</div>
+      <div class="flex"></div>
+      <content select=".buttons" horizontal layout end></content>
+    </div>
+    <div class="wrapper">
+      <content></content>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'patient-encounter',
+      properties: {
+        name: {
+          type: String,
+          notify: true,
+        }
+      },
+      ready: function() {
+        this.item = 'Value';
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

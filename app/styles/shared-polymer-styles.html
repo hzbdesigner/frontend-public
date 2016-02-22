@@ -1,0 +1,221 @@
+<!-- shared styles for all elements and index.html -->
+<dom-module id="shared-polymer-styles">
+  <template>
+    <style>
+    paper-menu a > *,
+    paper-menu paper-item > *,
+    paper-menu paper-icon-item > * {
+      pointer-events: none;
+    }
+    
+    paper-toolbar,
+    paper-button {
+      background-color: var(--foreground-color);
+    }
+    
+    paper-button {
+      border-radius: 3px;
+      outline: 0!important;
+      line-height: 20px;
+      padding: 4px 10px 3px 10px;
+      margin: 0;
+    }
+    
+    paper-button[primary] {
+      border: 1px solid var(--default-primary-color);
+      background-color: var(--default-primary-color);
+      color: var(--text-primary-color);
+    }
+    
+    paper-button[primary]:hover {
+      border: 1px solid var(--dark-primary-color);
+      background-color: var(--dark-primary-color);
+      color: var(--text-primary-color);
+    }
+    
+    paper-button[large] {
+      padding: 5px 12px;
+    }
+    
+    paper-button[link] {
+      color: var(--default-primary-color);
+      padding: 0;
+    }
+    
+    paper-button[secondary] {
+      border: 1px solid var(--secondary-button-border-color);
+      background-color: var(--shade-color);
+      color: var(--secondary-text-color);
+    }
+    
+    paper-button[secondary]:hover {
+      border: 1px solid var(--secondary-button-border-color);
+      background-color: var(--secondary-button-hover-color);
+      color: var(--secondary-text-color);
+    }
+    
+    paper-scroll-header-panel {
+      height: 100%;
+    }
+    
+    paper-icon-button.small {
+      height: 30px;
+      width: 30px;
+      color: var(--secondary-text-color);
+    }
+    
+    paper-icon-button.small:hover {
+      color: var(--default-primary-color);
+    }
+    
+    .top-level-tab-container {
+      /*background: var(--light-primary-color);*/
+      width: 100%;
+    }
+    
+    .top-level-tab-container paper-tabs {
+      min-width: 120px;
+      cursor: pointer;
+      --layout-flex: {}
+    }
+    
+    .top-level-tab-container paper-tabs span {
+      display: inline-block;
+      max-width: 120px;
+      padding-right: 20px;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      float: left;
+    }
+    
+    .top-level-tab-container paper-tabs i {
+      font-style: normal;
+      padding-right: 10px;
+    }
+    
+    .top-level-tab-container paper-tabs .small {
+      position: absolute;
+      top: 8px;
+      right: -10px;
+      width: 26px;
+      height: 26px;
+      opacity: 0.5;
+    }
+    
+    .top-level-tab-container paper-tab {
+      padding: 0 25px;
+      overflow: visible;
+      margin-right: 1px;
+      color: var(--primray-text-color);
+      background-color: var(--paper-grey-100);
+      /*border: 1px solid var(--light-primary-color);*/
+    }
+    
+    .top-level-tab-container paper-tab:hover {
+      color: var(--default-primary-color);
+    }
+    
+    .top-level-tab-container paper-tab.iron-selected {
+      color: var(--default-primary-color);
+      background-color: white!important;
+      /*border: 1px solid white!important;*/
+    }
+    
+    .top-level-tab-container paper-tab iron-icon {
+      padding-right: 10px;
+    }
+    /*level2*/
+    
+    .level2-tab-container {
+      border-bottom: 2px solid var(--shade-color);
+    }
+    
+    .level2-tab-container paper-tabs {
+      height: 42px;
+      --layout-flex: {}
+      padding: 0 40px 0 0;
+      margin-top: 0;
+      margin-bottom: -2px;
+    }
+    
+    .level2-tab-container paper-tab {
+      min-width: 120px;
+      color: var(--secondary-text-color);
+    }
+    
+    .level2-tab-container paper-tab.iron-selected {
+      color: var(--default-primary-color);
+    }
+    
+    .level2-tab-container paper-tab[accent] {
+      --paper-tabs-selection-bar-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    /*level2-alt*/
+    
+    .level2-tab-container-alt {
+      width: 100%;
+      border-bottom: 2px solid var(--shade-color);
+    }
+    
+    .level2-tab-container-alt paper-tabs {
+      width: 100%;
+      height: 36px;
+      padding: 0;
+      margin-top: 2px;
+      margin-bottom: -2px;
+    }
+    
+    .level2-tab-container-alt paper-tab {
+      color: var(--secondary-text-color);
+    }
+    
+    .level2-tab-container-alt paper-tab.iron-selected {
+      color: var(--default-primary-color);
+    }
+    /* POPUP */
+    
+    .popup {
+      background-color: white;
+    }
+    
+    .popup .container {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    .popup .content {
+      height: 100%;
+      padding：30px;
+    }
+    
+    .popup paper-toolbar {
+      background-color: var(--light-primary-color);
+      color: var(--primary-text-color);
+    }
+    
+    .popup .footer {
+      padding: 10px 40px;
+      background-color: var(--very-light-bg-color);
+      border-top: var(--shade-color);
+    }
+    
+    paper-icon-button.close {
+      height: 20px;
+      width: 20px;
+    }
+    
+    paper-datatable {
+      background-color: var(--foreground-color);
+    }
+    
+    paper-datatable::content tr:hover td {
+      background: var(--very-light-bg-color)!important;
+    }
+    </style>
+  </template>
+</dom-module>

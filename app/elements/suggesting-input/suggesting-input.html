@@ -1,0 +1,111 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="suggesting-item">
+  <template>
+    <style>
+    :host {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    </style>
+    <content></content>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'suggesting-item',
+      properties: {
+        suggest: {
+          type: Object,
+          notify: true
+        }
+      },
+      listeners: {
+        'tap': '_fireEvent'
+      },
+      _fireEvent: function() {
+        this.fire('suggest-tap', this.suggest);
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+<!-- another dom-module -->
+<dom-module id="suggesting-input">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      position: relative;
+    }
+    
+    iron-dropdown {
+      position: absolute;
+      top: 32px!important;
+      left: 0!important;
+    }
+    
+    .dropdown-content {
+      positon: absolute;
+      background: var(--foreground-color);
+    }
+
+    </style>
+    <input id="searchbar" class="form-control" is="iron-input" on-keyup="_searchChanged" placeholder="{{placeholder}}">
+    <iron-dropdown id="dropdown">
+      <paper-material elevation="2" class="dropdown-content">
+        <content></content>
+      </paper-material>
+    </iron-dropdown>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'suggesting-input',
+      properties: {
+        placeholder: {
+          type: String,
+          value: 'Search'
+        },
+        suggests: {
+          type: Array,
+          notify: true,
+          observer: '_suggestsUpdated'
+        }
+      },
+      listeners: {
+        'suggest-tap': '_suggestTapped',
+      },
+      _suggestsUpdated: function() {
+        if (this.suggests && this.suggests.length > 0) {
+          this.$.dropdown.open();
+        } else {
+          this.$.dropdown.close();
+        }
+      },
+      _suggestTapped: function(e) {
+        this.$.searchbar.value = '';
+        this.$.dropdown.close();
+        this.fire('suggest-select', e.detail);
+      },
+      _searchChanged: function(e) {
+        if (e.target.value) {
+          var suggests = this.querySelector('.suggests');
+          if (suggests && suggests.search) {
+            suggests.search(e.target.value);
+          }
+        } else {
+          this.$.dropdown.close();
+        }
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

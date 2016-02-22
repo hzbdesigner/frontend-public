@@ -1,0 +1,136 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-create-org">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    .org-new {
+      padding: 50px 150px;
+    }
+    
+    .org-new .org-brand {
+      position: relative;
+      width: 225px;
+      float: left;
+      margin-right: 50px;
+    }
+    
+    .org-new .org-brand a {
+      width: auto;
+      height: auto;
+    }
+    
+    .org-new .org-brand .upfile {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .org-new .org-brand img {
+      width: 100%;
+    }
+    
+    #dialog {
+      width: 75%;
+      height: 75%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">新建机构</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="org-new">
+            <div class="well-box">
+              <div class="pull-well org-brand"> <img src="/images/logo2.png" alt="">
+                <div class="upfile"><a href="#" class="text-info">点击上传诊所照片</a></div>
+              </div>
+              <div class="well">
+                <div class="form-inline">
+                  <div class="form-group">
+                    <label class="label-control fixed-md">机构名称:</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="label-control fixed-md">联系方式:</label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label class="label-control fixed-md vt">联系地址:</label>
+                    <div class="row-2x">
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option>北京市</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option>海淀区</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option>望京街道</option>
+                        </select>
+                      </div>
+                      <div class="blk-1x"></div>
+                      <div class="col-md-12">
+                        <input type="text" class="form-control" placeholder="输入详细地址">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="label-control fixed-md vt">机构简介:</label>
+                    <textarea class="form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="blk-2x"></div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-create-org',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,258 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="physician-workspace">
+  <template>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    paper-scroll-header-panel {
+      height: 100%;
+    }
+    
+    #drawerToolbar {
+      color: var(--secondary-text-color);
+      background-color: var(--drawer-menu-color);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+    
+    #drawerToolbar,
+    #mainToolbar {
+      height: var(--toplevel-toolbar-height);
+    }
+    
+    #mainToolbar {
+      background-color: var(--default-primary-color);
+      color: white;
+    }
+    
+    .paper-menu > .iron-selected {
+      color: var(--default-primary-color);
+    }
+    
+    paper-scroll-header-panel[drawer] {
+      background-color: var(--foreground-color);
+    }
+    
+    #mainPages {
+      background-color: var(--foreground-color);
+      max-width: 1920px;
+    }
+    
+    paper-menu {
+      padding-top: 0;
+      background-color: var(--foreground-color);
+    }
+    
+    paper-menu a {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      text-decoration: none;
+      color: var(--secondary-text-color);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-weight: 700;
+      line-height: 24px;
+      padding: 15px 40px 15px 10px;
+      position: relative;
+      display: block;
+      height: 51px;
+      line-height: 51px;
+      padding-left: 35px;
+      width: 100%;
+      cursor: pointer!important;
+    }
+    
+    paper-menu a.iron-selected:before {
+      width: 5px;
+      background: var(--default-primary-color);
+      height: 100%;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .side-menu li.active:first-child a:before {
+      top: -1px;
+    }
+    
+    paper-menu a:hover,
+    paper-menu a:hover iron-icon {
+      color: var(--default-primary-color)!important
+    }
+    
+    paper-menu a b {
+      width: 95px;
+      left: 35px;
+      bottom: -1px;
+      position: absolute;
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+      z-index: 1;
+    }
+    
+    paper-menu a.iron-selected b {
+      width: 0;
+    }
+    
+    paper-menu a iron-icon {
+      color: var(--secondary-text-color);
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      position: relative;
+      top: -2px;
+    }
+    
+    paper-menu a.iron-selected {
+      background-color: var(--shade-color);
+      color: var(--default-primary-color)!important;
+      z-index: 2;
+    }
+    
+    paper-menu a.iron-selected iron-icon {
+      color: var(--default-primary-color)!important;
+      opacity: 1;
+    }
+    </style>
+    <paper-drawer-panel id="paperDrawerPanel" drawer-width="170px">
+      <!-- Drawer Scroll Header Panel -->
+      <paper-scroll-header-panel drawer>
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar" style$="background-image: url({{logoImage}});">
+        </paper-toolbar>
+        <!-- Drawer Content -->
+        <paper-menu id="menu" attr-for-selected="data-route" selected="{{subRoute}}">
+          <a data-route="tasks" id="tasks" href="{{baseUrl}}tasks"><b></b>
+            <iron-icon icon="silk:folder"></iron-icon>
+            <div>消息</div>
+          </a>
+          <a data-route="patients" href="{{baseUrl}}patients"><b></b>
+            <iron-icon icon="silk:user"></iron-icon>
+            <div>患者</div>
+          </a>
+          <a data-route="schedule" href="{{baseUrl}}schedule"><b></b>
+            <iron-icon icon="silk:calendar"></iron-icon>
+            <div>预约</div>
+          </a>
+          <a data-route="billing" href="{{baseUrl}}billing"><b></b>
+            <iron-icon icon="silk:money"></iron-icon>
+            <div>收费</div>
+          </a>
+          <a data-route="reports" href="{{baseUrl}}reports"><b></b>
+            <iron-icon icon="silk:charts"></iron-icon>
+            <div>报表</div>
+          </a>
+          <a data-route="drugs" href="{{baseUrl}}drugs"><b></b>
+            <iron-icon icon="silk:drug"></iron-icon>
+            <div>药房</div>
+          </a>
+          <a data-route="members" href="{{baseUrl}}members"><b></b>
+            <iron-icon icon="silk:users"></iron-icon>
+            <div>会员</div>
+          </a>
+          <a data-route="organizations" href="{{baseUrl}}organizations"><b></b>
+            <iron-icon icon="silk:building"></iron-icon>
+            <div>机构</div>
+          </a>
+          <a data-route="settings" href="{{baseUrl}}settings"><b></b>
+            <iron-icon icon="silk:user-alt"></iron-icon>
+            <div>账号</div>
+          </a>
+        </paper-menu>
+      </paper-scroll-header-panel>
+      <!-- Main Area -->
+      <paper-header-panel main id="headerPanelMain" mode="seamed">
+        <paper-toolbar id="mainToolbar">
+          <ol class="breadcrumb pull-left">
+            <li>维世达诊所</li>
+            <li>{{subTitle}}</li>
+          </ol>
+          <span class="flex"></span>
+          <div class="user-nav relative">
+            <div class="profile">
+              <div class="row-1x">
+                <div class="group-span-1x">
+                  <span>
+                    <img src="/images/photo1.png" alt="user-img" class="img-circle">
+                  </span>
+                  <span>张琪<i class="caret"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </paper-toolbar>
+        <div class="content">
+          <iron-pages id="mainPages" attr-for-selected="data-route" selected="{{subRoute}}">
+            <workspace-tasks class="fit" data-route="tasks"></workspace-tasks>
+            <workspace-patients class="fit" id="patients" data-route="patients" openned-patients="{{opennedPatients}}"></workspace-patients>
+            <workspace-calendar class="fit" id="canender" data-route="schedule" class="fit"></workspace-calendar>
+            <workspace-reports class="fit" data-route="reports"></workspace-reports>
+            <workspace-billing class="fit" data-route="billing"></workspace-billing>
+            <workspace-drugs class="fit" data-route="drugs"></workspace-drugs>
+            <workspace-members class="fit" data-route="members"></workspace-members>
+            <workspace-organizations class="fit" data-route="organizations"></workspace-organizations>
+            <workspace-settings class="fit" data-route="settings"></workspace-settings>
+          </iron-pages>
+        </div>
+      </paper-header-panel>
+    </paper-drawer-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'physician-workspace',
+      properties: {
+        logoImage: {
+          value: 'images/practise.png',
+          type: String,
+          notify: false,
+        },
+        subRoute: {
+          type: String,
+          notify: true,
+          observer: 'subRouteChanged'
+        },
+        subTitle: {
+          type: String,
+          notify: true
+        },
+        opennedPatients: {
+          value: ['aaaa', 'bbbb', 'ccc'],
+          type: Object,
+          notify: true,
+        }
+      },
+      subRouteChanged: function(v) {
+        if (v === 'schedule') {
+          this.$.canender.render();
+          this.subTitle = '预约管理';
+        } else if (v === 'tasks') {
+          this.subTitle = '消息管理';
+        } else if (v === 'patients') {
+          this.subTitle = '患者管理';
+        } else if (v === 'billing') {
+          this.subTitle = '收费管理';
+        } else if (v === 'drugs') {
+          this.subTitle = '药房管理';
+        } else if (v === 'reports') {
+          this.subTitle = '报表管理';
+        } else if (v === 'members') {
+          this.subTitle = '会员管理';
+        } else if (v === 'organizations') {
+          this.subTitle = '机构管理';
+        } else if (v === 'settings') {
+          this.subTitle = '账号设置';
+        } else {
+          console.error('handle this in physician-workspace subRouteChanged()');
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

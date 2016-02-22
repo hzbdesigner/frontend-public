@@ -1,0 +1,59 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="templates-diagnose">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+    </style>
+    <div class="cards p-20">
+      <div class="list-item item-border edit bg-gray">
+        <div class="pull-right edit">
+          <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+        </div>
+        <div class="item">忌油腻、辛辣、海鲜、生冷等食物。</div>
+      </div>
+      <div class="list-item item-border edit bg-gray">
+        <div class="pull-right edit">
+          <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+        </div>
+        <div class="item">饭后一小时服用。</div>
+      </div>
+      <div class="list-item item-border edit bg-gray">
+        <div class="pull-right edit">
+          <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+        </div>
+        <div class="item">忌油腻、辛辣、海鲜、生冷等食物。</div>
+      </div>
+      <div class="list-item item-border edit bg-gray">
+        <div class="pull-right edit">
+          <paper-icon-button icon="silk:times" class="small"></paper-icon-button>
+        </div>
+        <div class="item">病情无缓减或加重时，请速到上级医院就诊。</div>
+      </div>
+      <div class="blk-1x"></div>
+      <div class="list-item list-item-control">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="请输入遗嘱">
+          <div class="input-group-btn">
+            <paper-button secondary>添加</paper-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'templates-diagnose',
+    });
+  })();
+  </script>
+</dom-module>

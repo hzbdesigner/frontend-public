@@ -1,0 +1,101 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<!-- http://materialdesignblog.com/Material-Design-Floating-Action-Button/ -->
+<dom-module id="floating-buttons">
+  <template>
+    <style include="floating-buttons-styles">
+    :host {
+      display: inline-block;
+      position: relative;
+    }
+    
+    iron-icon {
+      width: 24px!important;
+      height: 24px!important;
+    }
+    
+    --paper-tooltip-opacity: 0.5;
+    paper-tooltip::content #tooltip {
+      font-size: 1em;
+    }
+    </style>
+    <ul class="menu m-slidein-spring" data-m-toggle="hover">
+      <li class="mfb_wrap">
+        <div class="main" on-tap="fireMainEvent">
+          <iron-icon class="main-resting" icon="{{config.icon}}"></iron-icon>
+          <iron-icon class="main-active" icon="{{config.activeIcon}}"></iron-icon>
+          <paper-tooltip animation-delay="50" position="left">{{config.label}}</paper-tooltip>
+        </div>
+        <ul class="mfb_list">
+          <template is="dom-repeat" items="{{config.buttons}}">
+            <li>
+              <div class="child" on-tap="fireEvent">
+                <iron-icon class="child-icon" icon="[[item.icon]]"></iron-icon>
+              </div>
+              <paper-tooltip animation-delay="0" position="left">{{item.label}}</paper-tooltip>
+            </li>
+          </template>
+        </ul>
+      </li>
+    </ul>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'floating-buttons',
+      properties: {
+        config: {
+          type: Object,
+          notify: true,
+          value: {
+            // label: 'Label',
+            // icon: 'add',
+            // activeIcon: 'home',
+            // event: "main"
+            // buttons: [{
+            //   label: 'Label1',
+            //   icon: 'home',
+            //   event: 'event1'
+            // }, {
+            //   label: 'Label2',
+            //   icon: 'home',
+            //   event: 'event2'
+            // }]
+          }
+        }
+      },
+      getElemsByToggleMethod: function(selector) {
+        return document.querySelectorAll('[data-m-toggle="' + selector + '"]');
+      },
+      toggleButton: function(evt) {
+        var target = evt.target;
+        while (target && !target.getAttribute('data-m-toggle')) {
+          target = target.parentNode;
+          if (!target) {
+            return;
+          }
+        }
+        var currentState = target.getAttribute('data-m-state') === 'open' ? 'closed' : 'open';
+
+        target.setAttribute('data-m-state', currentState);
+      },
+      attachEvt: function(elems, evt) {
+        for (var i = 0, len = elems.length; i < len; i++) {
+          var mainButton = elems[i].querySelector('.main');
+          mainButton.addEventListener(evt, this.toggleButton, false);
+        }
+      },
+      ready: function() {
+        this.attachEvt(this.getElemsByToggleMethod('click'), 'click');
+      },
+      fireMainEvent: function() {
+        this.fire(this.config.event);
+      },
+      fireEvent: function(e) {
+        this.fire(e.model.__data__.item.event);
+      }
+    });
+  })();
+  </script>
+</dom-module>

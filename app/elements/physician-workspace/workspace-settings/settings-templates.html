@@ -1,0 +1,55 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="settings-templates">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    iron-pages {
+      padding: 40px;
+    }
+    
+    .sub-page {
+      @apply(--layout-fit);
+    }
+    </style>
+    <!--     <div class="menu horizontal layout">
+      
+      <paper-fab id="soap-fab" icon="silk:records" alt="aaaaaa"></paper-fab>
+      <paper-fab id="prescription-fab" icon="silk:prescription" alt="aaaaaa"></paper-fab>
+      <paper-fab id="default-fab" icon="add" class="primary"></paper-fab>
+      <floating-buttons></floating-buttons>
+    </div> -->
+    <paper-scroll-header-panel class="fit" fixed>
+      <div class="level2-tab-container paper-header horizontal layout cards">
+        <paper-tabs id="tabs" noink attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="prescription">处方模板</paper-tab>
+          <paper-tab tabid="diagnose">医嘱模板</paper-tab>
+        </paper-tabs>
+        <div class="flex"></div>
+      </div>
+      <iron-pages id="pages" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <templates-prescription tabid="prescription" class="sub-page"></templates-prescription>
+        <templates-diagnose tabid="diagnose" class="sub-page"></templates-diagnose>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'settings-templates',
+      properties: {
+        selectedTab: {
+          value: 'prescription',
+          type: String,
+          notify: true,
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

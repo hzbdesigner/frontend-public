@@ -1,0 +1,185 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="patients-recent-visited">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+
+    </style>
+    <paper-scroll-header-panel fixed class="fit">
+      <search-toolbar id="search-toolbar" class="paper-header" button-label="新增患者档案" search-hint="输入患者姓名，证件号码搜索...">
+      </search-toolbar>
+      <paper-datatable id="datatable" data="{{patients}}" multi-selection>
+        <paper-datatable-column id="nameColumn" header="姓名" property="name" style="min-width: 100px;">
+          <template>
+            <div>
+              <img src="[[item.picture.thumbnail]]" style="width:32px;height:32px;border-radius:16px;vertical-align: middle;margin-right:4px;">
+              <span style="vertical-align:middle;">[[item.name]]</span>
+            </div>
+          </template>
+        </paper-datatable-column>
+        <paper-datatable-column header="性别" property="gender" style="max-width: 20px;"></paper-datatable-column>
+        <paper-datatable-column header="生日" property="dob" style="min-width: 130px;"></paper-datatable-column>
+        <paper-datatable-column header="身份证号" property="nid" style="min-width: 150px;"></paper-datatable-column>
+        <paper-datatable-column header="手机" property="cellphone" style="min-width: 150px;"></paper-datatable-column>
+        <!--     <paper-datatable-column header="地址" property="address" style="min-width: 150px;" ></paper-datatable-column>
+          <template>
+            <div>[[capitalize(value.street)]]</div>
+            <div>
+              <span>[[capitalize(value.state)]]</span>
+              <span>[[capitalize(value.zip)]]</span>
+            </div>
+          </template>
+          </paper-datatable-column> -->
+      </paper-datatable>
+      <div class="cards p-20">
+        <div class="blk-2x"></div>
+        <a href="#" class="btn btn-default btn-block text-info">查看下50条</a>
+      </div>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'patients-recent-visited',
+      properties: {
+        patients: {
+          type: Array,
+          notify: true,
+          value: [{
+            id: '1000000001',
+            name: '王东',
+            gender: '男',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }, {
+            id: '1000000002',
+            name: '李丰',
+            gender: '女',
+            dob: '1977-07-08',
+            nid: '身份证: 210291182991911929191',
+            cellphone: '129-2192-1921'
+          }]
+        }
+      }
+    });
+  })();
+
+  </script>
+</dom-module>
+

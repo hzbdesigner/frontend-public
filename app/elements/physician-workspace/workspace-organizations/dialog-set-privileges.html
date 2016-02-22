@@ -1,0 +1,323 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-set-privileges">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    .limits {
+      border: 1px solid #eee;
+    }
+    
+    .limits [class*="col-md-"] {
+      border-right: 1px solid #eee;
+      min-height: 360px;
+    }
+    
+    .limits [class*="col-md-"]:last-chid {
+      border-right: none;
+    }
+    
+    .limits [class*="col-md-"] b {
+      display: inline-block;
+      padding: 20px 0 10px 0;
+    }
+    
+    #dialog {
+      width: 75%;
+      height: 75%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">权限设置</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="p-20">
+            <form>
+              <div class="blk-1x"></div>
+              <div class="row-1x">
+                <div class="group-span-1x">
+                  <span>
+                    <paper-button primary>超级管理员</paper-button>
+                  </span>
+                  <span>
+                    <paper-button primary>前台</paper-button>
+                  </span>
+                  <span>
+                    <paper-button primary>医生</paper-button>
+                  </span>
+                  <span>
+                    <paper-button primary>护士</paper-button>
+                  </span>
+                  <span>
+                    <paper-button primary>药剂师</paper-button>
+                  </span>
+                </div>
+              </div>
+              <div class="blk-2x"></div>
+              <div class="limits clearfix">
+                <div class="col-md-2"> <b>系统管理权限</b>
+                  <ul class="list-style none line-2x">
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 成员管理
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 检查项目设置
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 打印设置
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 处方模板维护
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 面部脱皮
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 预约/排班设置
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 科室管理
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 挂号费用设置
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 处方费用设置
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-2"> <b>统计权限</b>
+                  <ul class="list-style none line-2x">
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 门诊收费查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 诊所财务统计
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 检查项目统计
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 年/月报表统计
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品采购统计
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 库存量对比
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品去向统计
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 采购退货统计
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-2"> <b>收费和发药权限</b>
+                  <ul class="list-style none line-2x">
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 收费发药
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 处方退费
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 补交欠款
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 收费查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 赊账查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 登记管理
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-2"> <b>药品管理权限</b>
+                  <ul class="list-style none line-2x">
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品信息维护
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 采购入库
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品预警查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品库存盘点
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品库存查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品调价管理
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 采购退货
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 盘点日志查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品多单位换算
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品报损
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-2"> <b>看病权限</b>
+                  <ul class="list-style none line-2x">
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 新开就诊
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 购买药品
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 购买药品列表
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 预约登记
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 药品库存查询
+                      </label>
+                    </li>
+                    <li>
+                      <label class="label-control">
+                        <input type="checkbox"> 门诊挂号
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </form>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-set-privileges',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

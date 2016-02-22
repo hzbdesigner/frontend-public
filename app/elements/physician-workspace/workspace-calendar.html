@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-calendar">
+  <template>
+    <style>
+    :host {
+      display: block;
+      padding: var(--workspace-padding);
+      background-color: var(--shade-color);
+    }
+    
+    full-calendar {
+      margin-bottom: 30px;
+    }
+    </style>
+    <div>
+      <full-calendar id="silkcalendar"></full-calendar>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-calendar',
+      properties: {},
+      render: function() {
+        this.$.silkcalendar.render();
+      }
+    });
+  })();
+  </script>
+</dom-module>

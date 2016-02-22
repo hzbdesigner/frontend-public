@@ -1,0 +1,188 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-billing">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--shade-color);
+      padding: var(--workspace-padding);
+      --paper-tabs-selection-bar-color: var(--default-primary-color);
+    }
+    </style>
+    <div class="container">
+      <div class="cards p-20">
+        <div class="filter">
+          <div class="form-inline">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group m-0">
+                  <label class="label-control">快速查询</label>
+                  <input type="text" placeholder="" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group m-0">
+                  <label class="label-control">收费类型</label>
+                  <select class="form-control">
+                    <option>全部</option>
+                    <option></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group m-0">
+                  <label class="label-control">收费角色</label>
+                  <select class="form-control">
+                    <option>前台</option>
+                    <option>医生</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group m-0">
+                  <label class="label-control fixed-sm">收费日期:</label>
+                  <div class="span">
+                    <div class="input-group">
+                      <input type="text" placeholder="2016-1-12" class="form-control">
+                      <div class="input-group-addon center">至</div>
+                      <input type="text" placeholder="2016-2-12" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <paper-button secondary>查询</paper-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider solid"></div>
+      <div class="cards p-20">
+        <table class="table table-hover text-center table-bordered">
+          <thead>
+            <tr>
+              <th class="text-left">收费日期</th>
+              <th class="text-left">患者</th>
+              <th>应收金额</th>
+              <th>赊账金额</th>
+              <th>收费员</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-left">2016-01-23</th>
+              <td class="text-left"><b>王琪</b>
+                <span class="offset-1x">男</span>
+                <span class="offset-1x">34岁</span>
+              </td>
+              <td>¥23.45</td>
+              <td>0</td>
+              <td>王丽</td>
+              <td>
+                <paper-button noink link on-tap="charge">查看</paper-button>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-left">2016-01-23</th>
+              <td class="text-left"><b>王琪</b>
+                <span class="offset-1x">男</span>
+                <span class="offset-1x">34岁</span>
+              </td>
+              <td>¥23.45</td>
+              <td>0</td>
+              <td>王丽</td>
+              <td>
+                <paper-button noink link on-tap="charge">查看</paper-button>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-left">2016-01-23</th>
+              <td class="text-left"><b>王琪</b>
+                <span class="offset-1x">男</span>
+                <span class="offset-1x">34岁</span>
+              </td>
+              <td>¥23.45</td>
+              <td>0</td>
+              <td>王丽</td>
+              <td>
+                <paper-button noink link on-tap="charge">查看</paper-button>
+              </td>
+            </tr>
+            <tr>
+              <th class="text-left">2016-01-23</th>
+              <td class="text-left"><b>王琪</b>
+                <span class="offset-1x">男</span>
+                <span class="offset-1x">34岁</span>
+              </td>
+              <td>¥23.45</td>
+              <td>0</td>
+              <td>王丽</td>
+              <td>
+                <paper-button noink link on-tap="charge">查看</paper-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <dialog-charge id="chargeDialog"></dialog-charge>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-billing',
+      properties: {
+        selectedTab: {
+          value: '欧阳大哥',
+          type: String,
+          notify: true
+        },
+        patientsShown: {
+          type: Array,
+          value: [{
+            id: '欧阳大哥'
+          }, {
+            id: '林凤娇'
+          }],
+          notify: true
+        }
+      },
+      showPatient: function(patient) {
+        console.log(this.patientsShown);
+        console.log(patient);
+        console.log(this.patientsShown.indexOf(patient));
+
+        var found = false;
+        for (var i = 0; i < this.patientsShown.length; i++) {
+          if (this.patientsShown[i].id === patient.id) {
+            found = true;
+          }
+        }
+
+        if (found === false) {
+          this.push('patientsShown', patient);
+        }
+        this.selectedTab = patient.id;
+        console.log('show patient: ' + patient);
+
+        console.log(this.patientsShown);
+        console.log(this.selectedTab);
+      },
+      closePatient: function(e) {
+        console.log('closePatient: ' + e.model.item.id);
+        this.selectedTab = 'all';
+        console.log(this.selectedTab);
+      },
+      charge: function(e) {
+        console.log(e);
+        this.$.chargeDialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

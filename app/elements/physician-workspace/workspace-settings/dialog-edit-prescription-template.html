@@ -1,0 +1,299 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-edit-prescription-template">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 85%;
+      height: 85%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">处方模板编辑</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="flex content p-20 vertical-layout">
+            <div class="prescription price">
+              <table class="table basic basic-padding text-center">
+                <thead>
+                  <tr>
+                    <th class="text-left">药物名称</th>
+                    <th>单次用量</th>
+                    <th>用法</th>
+                    <th>频次</th>
+                    <th>天数</th>
+                    <th>总量</th>
+                    <th>单价</th>
+                    <th>皮试</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="text-lenght-control">奥硝唑片奥硝唑片奥硝唑片奥硝唑片</span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text">
+                        <span class="border-l">
+                          <select class="">
+                            <option value="g">g</option>
+                            <option value="克">克</option>
+                            <option value="mg">mg</option>
+                            <option value="毫克">毫克</option>
+                            <option value="μg">μg</option>
+                            <option value="微克">微克</option>
+                            <option value="ml">ml</option>
+                            <option value="毫升">毫升</option>
+                            <option value="IU">IU</option>
+                            <option value="片">片</option>
+                            <option value="粒">粒</option>
+                            <option value="丸">丸</option>
+                            <option value="支">支</option>
+                            <option value="贴">贴</option>
+                            <option value="瓶">瓶</option>
+                            <option value="袋">袋</option>
+                            <option value="套">套</option>
+                            <option value="滴">滴</option>
+                          </select>
+                        </span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <select>
+                          <option value="口服">口服</option>
+                          <option value="静脉推注">静脉推注</option>
+                          <option value="外用">外用</option>
+                          <option value="冲服">冲服</option>
+                          <option value="煎服">煎服</option>
+                          <option value="肌肉注射">肌肉注射</option>
+                          <option value="皮下注射">皮下注射</option>
+                          <option value="舌下含服">舌下含服</option>
+                          <option value="含服">含服</option>
+                          <option value="喷雾吸入">喷雾吸入</option>
+                          <option value="雾化吸入">雾化吸入</option>
+                          <option value="纳肛">纳肛</option>
+                          <option value="保留灌肠">保留灌肠</option>
+                          <option value="皮内注射">皮内注射</option>
+                          <option value="嚼服">嚼服</option>
+                          <option value="静脉滴注">静脉滴注</option>
+                          <option value="入壶">入壶</option>
+                        </select>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <select>
+                          <option value="一日一次">一日一次</option>
+                          <option value="一日两次">一日两次</option>
+                          <option value="一日三次">一日三次</option>
+                          <option value="一日四次">一日四次</option>
+                          <option value="遵医嘱">遵医嘱</option>
+                        </select>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text">
+                        <span class="addon border-l">天</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text">
+                        <span class="border-l">
+                          <select>
+                            <option value="盒">盒</option>
+                            <option value="瓶">瓶</option>
+                            <option value="袋">袋</option>
+                            <option value="套">套</option>
+                            <option value="板">板</option>
+                            <option value="支">支</option>
+                            <option value="包">包</option>
+                            <option value="g">g</option>
+                            <option value="克">克</option>
+                            <option value="mg">mg</option>
+                            <option value="毫克">毫克</option>
+                            <option value="μg">μg</option>
+                            <option value="微克">微克</option>
+                            <option value="ml">ml</option>
+                            <option value="毫升">毫升</option>
+                            <option value="IU">IU</option>
+                            <option value="片">片</option>
+                            <option value="粒">粒</option>
+                            <option value="丸">丸</option>
+                            <option value="贴">贴</option>
+                          </select>
+                        </span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text" class="form-md">
+                        <span class="addon border-l">元</span>
+                      </span>
+                    </td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <paper-icon-button icon="close" class="small"></paper-icon-button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <suggesting-input id="medicationSuggests1" suggests={{medicationSuggests1}} placeholder="请输入添加的的药品名称">
+                        <suggest-medications class="suggests" suggests={{medicationSuggests1}}></suggest-medications>
+                      </suggesting-input>
+                    </td>
+                    <td colspan="6"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="blk-3x"></div>
+              <div class="row-2x">
+                <div class="col-md-4">
+                  <div class="list-item item-border edit bg-gray">
+                    <div class="name pull-left">
+                      <span class="">地黄</span>
+                    </div>
+                    <span class="pull-right">
+                      <paper-icon-button icon="close" class="small"></paper-icon-button>
+                    </span>
+                    <div class="pull-right">
+                      <span class="table-form">
+                        <input type="text" class="md">
+                        <span class="addon border-l">g</span>
+                        <span class="border-l">
+                          <select name="cnDrugList[0].useMethod" class="enter zySelect">
+                            <option value="">默认</option>
+                            <option value="先煎">先煎</option>
+                            <option value="后下">后下</option>
+                            <option value="包煎">包煎</option>
+                            <option value="烊化">烊化</option>
+                            <option value="冲服">冲服</option>
+                          </select>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="list-item item-border edit bg-gray">
+                    <div class="name pull-left">
+                      <span class="">地黄</span>
+                    </div>
+                    <span class="pull-right">
+                      <paper-icon-button icon="close" class="small"></paper-icon-button>
+                    </span>
+                    <div class="pull-right">
+                      <span class="table-form">
+                        <input type="text" class="md">
+                        <span class="addon border-l">g</span>
+                        <span class="border-l">
+                          <select name="cnDrugList[0].useMethod" class="enter zySelect">
+                            <option value="">默认</option>
+                            <option value="先煎">先煎</option>
+                            <option value="后下">后下</option>
+                            <option value="包煎">包煎</option>
+                            <option value="烊化">烊化</option>
+                            <option value="冲服">冲服</option>
+                          </select>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="list-item item-border edit bg-gray">
+                    <div class="name pull-left">
+                      <span class="">地黄</span>
+                    </div>
+                    <span class="pull-right">
+                      <paper-icon-button icon="close" class="small"></paper-icon-button>
+                    </span>
+                    <div class="pull-right">
+                      <span class="table-form">
+                        <input type="text" class="md">
+                        <span class="addon border-l">g</span>
+                        <span class="border-l">
+                          <select name="cnDrugList[0].useMethod" class="enter zySelect">
+                            <option value="">默认</option>
+                            <option value="先煎">先煎</option>
+                            <option value="后下">后下</option>
+                            <option value="包煎">包煎</option>
+                            <option value="烊化">烊化</option>
+                            <option value="冲服">冲服</option>
+                          </select>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="blk-1x"></div>
+                <div class="col-md-4">
+                  <div class="list-item list-item-control">
+                    <suggesting-input id="medicationSuggests2" suggests={{medicationSuggests2}} placeholder="请输入添加的的药品名称">
+                      <suggest-medications class="suggests" suggests={{medicationSuggests2}}></suggest-medications>
+                    </suggesting-input>
+                  </div>
+                </div>
+              </div>
+              <div class="blk-2x"></div>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-edit-prescription-template',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        selectedTab: {
+          value: 'med',
+          type: String,
+          notify: true
+        },
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

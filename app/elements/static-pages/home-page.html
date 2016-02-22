@@ -1,0 +1,218 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="home-page">
+  <template>
+    <style>
+    :host {
+      display: block;
+      padding: 100px;
+    }
+    
+    .x < a {
+      display: block;
+    }
+    
+    .silk-icons > div {
+      width: 100px;
+      height: 100px;
+    }
+    
+    iron-icon {
+      padding: 10px;
+    }
+    
+    .mfb_wrap iron-icon {
+      padding: 0;
+      width: 24px;
+      height: 24px;
+    }
+    
+    .regular {
+      --paper-input-container-color: blue;
+      --paper-input-container-focus-color: green;
+      --paper-input-container-input-color: red;
+    }
+    </style>
+    <div class="x vertical center layout">
+      <div>现在主要的“全屏”页面有以下这些(新页面请加到此处）：</div>
+      <a href="{{app.baseUrl}}organizations">{{app.baseUrl}}organizations</a>
+      <a href="{{app.baseUrl}}members">{{app.baseUrl}}members</a>
+      <a href="{{app.baseUrl}}drugs">{{app.baseUrl}}drugs</a>
+      <a href="{{app.baseUrl}}billing">{{app.baseUrl}}billing</a>
+      <a href="{{app.baseUrl}}reports">{{app.baseUrl}}reports</a>
+      <a href="{{app.baseUrl}}patients">{{app.baseUrl}}patients</a>
+      <a href="{{app.baseUrl}}schedule">{{app.baseUrl}}schedule</a>
+      <a href="{{app.baseUrl}}tasks">{{app.baseUrl}}tasks</a>
+      <a href="{{app.baseUrl}}settings">{{app.baseUrl}}settings</a>
+      <a href="{{app.baseUrl}}loggedout">{{app.baseUrl}}loggedout</a>
+      <a href="{{app.baseUrl}}register">{{app.baseUrl}}register</a>
+      <a href="{{app.baseUrl}}login">{{app.baseUrl}}login</a>
+      <a href="{{app.baseUrl}}login/choose">{{app.baseUrl}}login/choose</a>
+      <a href="{{app.baseUrl}}terms">{{app.baseUrl}}terms</a>
+      <a href="{{app.baseUrl}}/">{{app.baseUrl}}HOME</a>
+    </div>
+    <div class="vertical layout">
+      <div></div>
+      <div></div>
+    </div>
+    <div class="silk-icons horizontal layout">
+      <div class="vertical layout">
+        <iron-icon icon="silk:folder"></iron-icon>
+        <div>folder</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:calendar"></iron-icon>
+        <div>calendar</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:charts"></iron-icon>
+        <div>charts</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:user"></iron-icon>
+        <div>user</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:users"></iron-icon>
+        <div>users</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:user-alt"></iron-icon>
+        <div>user-alt</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:records"></iron-icon>
+        <div>records</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:allergies"></iron-icon>
+        <div>allergies</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:menu"></iron-icon>
+        <div>menu</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:save"></iron-icon>
+        <div>save</div>
+      </div>
+    </div>
+    <div class="silk-icons horizontal layout">
+      <div class="vertical layout">
+        <iron-icon icon="silk:check"></iron-icon>
+        <div>check</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:times"></iron-icon>
+        <div>times</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:clock"></iron-icon>
+        <div>clock</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:doc"></iron-icon>
+        <div>doc</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:dollar"></iron-icon>
+        <div>dollar</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:drug"></iron-icon>
+        <div>drug</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:drug-alt"></iron-icon>
+        <div>drug-alt</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:funnel"></iron-icon>
+        <div>funnel</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:pencil"></iron-icon>
+        <div>pencil</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:leaf"></iron-icon>
+        <div>leaf</div>
+      </div>
+    </div>
+    <div class="silk-icons horizontal layout">
+      <div class="vertical layout">
+        <iron-icon icon="silk:money"></iron-icon>
+        <div>money</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:people"></iron-icon>
+        <div>people</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:prescription"></iron-icon>
+        <div>prescription</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:stethoscope"></iron-icon>
+        <div>stethoscope</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:wechat"></iron-icon>
+        <div>wechat</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:building"></iron-icon>
+        <div>building</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:qq"></iron-icon>
+        <div>QQ</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:weibo"></iron-icon>
+        <div>微博</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:email"></iron-icon>
+        <div>emial</div>
+      </div>
+      <div class="vertical layout">
+        <iron-icon icon="silk:phone"></iron-icon>
+        <div>手机</div>
+      </div>
+    </div>
+    <div class="silk-icons horizontal layout">
+      <div class="vertical layout">
+        <iron-icon icon="silk:plus"></iron-icon>
+        <div>plus</div>
+      </div>
+    </div>
+    <paper-chip removable>
+      <iron-icon class="icon" icon="avatars:avatar-1"></iron-icon>
+      <h1>John Doe</h1>
+      <h2>jdoe@example.com</h2>
+    </paper-chip>
+    <paper-chip removable animated>
+      <iron-icon class="icon" icon="avatars:avatar-10"></iron-icon>
+      <h1>Jane Doe</h1>
+      <h2>janedoe@example.com</h2>
+      <address>
+        123 Avenue Way
+        <br> Anytown, USA 12345
+        <br>
+        <br> 555-123-4567
+      </address>
+    </paper-chip>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'home-page',
+      showAlert: function() {
+        window.sweetAlert('Oops...', 'Something went wrong!', 'error');
+      }
+    });
+  })();
+  </script>
+</dom-module>

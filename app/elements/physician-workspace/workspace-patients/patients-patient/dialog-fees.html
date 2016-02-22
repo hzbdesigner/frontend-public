@@ -1,0 +1,103 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-fees">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 35%;
+      height: 35%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">附加费</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="flex content p-20 vertical-layout">
+            <div class="prescription">
+              <table class="table basic table-bordered text-center">
+                <tbody>
+                  <tr>
+                    <td>
+                      <b class="text-lenght-control">诊疗费</b>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text" class="form-md">
+                        <span class="addon border-l">元</span>
+                      </span>
+                    </td>
+                    <td>
+                      <paper-button secondary>添加</paper-button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <b class="text-lenght-control">诊疗费</b>
+                    </td>
+                    <td>
+                      <span class="table-form">
+                        <input type="text" class="form-md">
+                        <span class="addon border-l">元</span>
+                      </span>
+                    </td>
+                    <td>
+                      <paper-button secondary>添加</paper-button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>取消</paper-button>
+          <paper-button id="save" accent>确定</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-fees',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        selectedTab: {
+          value: 'med',
+          type: String,
+          notify: true
+        },
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="workspace-drugs">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+      background-color: var(--shade-color);
+      padding: var(--workspace-padding);
+    }
+    </style>
+    <paper-scroll-header-panel fixed>
+      <!-- header -->
+      <div class="top-level-tab-container paper-header">
+        <paper-tabs noink no-bar attr-for-selected="tabid" selected="{{selectedTab}}">
+          <paper-tab tabid="list">
+            药品库存
+          </paper-tab>
+          <paper-tab tabid="recent">
+            库存变更
+          </paper-tab>
+          <template is="dom-repeat" items="{{drugs}}">
+            <paper-tab tabid="{{item.id}}">
+              <span>{{item.name}}</span>
+              <paper-icon-button class="small" icon="silk:times" noink on-tap="closeDrug"></paper-icon-button>
+            </paper-tab>
+          </template>
+        </paper-tabs>
+      </div>
+      <!-- main -->
+      <iron-pages class="flex" attr-for-selected="tabid" selected="{{selectedTab}}">
+        <drugs-stock tabid="list" class="flex"></drugs-stock>
+        <drugs-stock-change tabid="recent" class="flex"></drugs-stock-change>
+        <template is="dom-repeat" items="{{drugs}}">
+          <drugs-drug drug-id="{{item.id}}" tabid="{{item.id}}" class="flex"></drugs-drug>
+        </template>
+      </iron-pages>
+    </paper-scroll-header-panel>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'workspace-drugs',
+      properties: {
+        selectedTab: {
+          value: 'list',
+          type: String,
+          notify: true
+        },
+        drugs: {
+          type: String,
+          notify: true,
+          value: [{
+            id: 'abc',
+            name: 'M氨酚伪麻美芬片(白加黑)'
+          }, {
+            id: 'bbb',
+            name: '小儿氨酚黄那敏颗粒(果娃)'
+          }]
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

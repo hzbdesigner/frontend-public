@@ -1,0 +1,110 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-edit-contact">
+  <template>
+    <style include="shared-polymer-styles"></style>
+    <style include="shared-styles">
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 75%;
+      height: 75%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">编辑联系人</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="content p-30">
+            <div class="form-inline">
+              <fieldset>
+                <legend>紧急联系人</legend>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="label-control fixed-md">姓名:</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="label-control fixed-md">手机号:</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="label-control fixed-md">联系地址:</label>
+                      <div class="row-1x">
+                        <div class="group-span-1x">
+                          <span>
+                            <select class="form-control">
+                              <option>北京市</option>
+                            </select>
+                          </span>
+                          <span>
+                            <select class="form-control">
+                              <option>海淀区</option>
+                            </select>
+                          </span>
+                          <span>
+                            <select class="form-control">
+                              <option>望京街道</option>
+                            </select>
+                          </span>
+                          <span style="width:250px;">
+                            <input type="text" class="form-control" placeholder="输入详细地址">
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-edit-contact',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

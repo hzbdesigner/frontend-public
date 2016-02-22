@@ -1,0 +1,288 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="dialog-add-drug">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #dialog {
+      width: 75%;
+      height: 55%;
+      min-width: 400px;
+    }
+    </style>
+    <paper-dialog id="dialog" class="popup container vertical layout" auto-fit-on-attach no-cancel-on-esc-key modal>
+      <div class="container vertical layout">
+        <paper-scroll-header-panel class="flex" fixed>
+          <paper-toolbar mode="seamed">
+            <h2 class="modal-title">新增药品</h2>
+            <div class="flex"> </div>
+            <paper-icon-button id="cancel2" noink icon="close"></paper-icon-button>
+          </paper-toolbar>
+          <div class="content">
+            <div class="p-20">
+              <form class="form-inline">
+                <fieldset>
+                  <legend>必填信息</legend>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品名称:</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品分类:</label>
+                        <select>
+                          <option>中药</option>
+                          <option>中成药</option>
+                          <option>西药</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">单次用量:</label>
+                        <div class="input-group">
+                          <input class="form-control" placeholder="">
+                          <div class="input-group-btn">
+                            <span class="table-form border">
+                              <select name="">
+                                <option value="g">g</option>
+                                <option value="mg">mg</option>
+                                <option value="μg">μg</option>
+                                <option value="ml">ml</option>
+                                <option value="IU">IU</option>
+                                <option value="片" selected="selected">片</option>
+                                <option value="粒">粒</option>
+                                <option value="丸">丸</option>
+                                <option value="支">支</option>
+                                <option value="贴">贴</option>
+                                <option value="瓶">瓶</option>
+                                <option value="袋">袋</option>
+                                <option value="套">套</option>
+                                <option value="滴">滴</option>
+                              </select>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品用法:</label>
+                        <select name="">
+                          <option value="口服" selected="selected">口服</option>
+                          <option value="静脉注射">静脉注射</option>
+                          <option value="外用">外用</option>
+                          <option value="冲服">冲服</option>
+                          <option value="煎服">煎服</option>
+                          <option value="肌肉注射">肌肉注射</option>
+                          <option value="皮下注射">皮下注射</option>
+                          <option value="舌下含服">舌下含服</option>
+                          <option value="含服">含服</option>
+                          <option value="喷雾吸入">喷雾吸入</option>
+                          <option value="雾化吸入">雾化吸入</option>
+                          <option value="皮试">皮试</option>
+                          <option value="纳肛">纳肛</option>
+                          <option value="保留灌肠">保留灌肠</option>
+                          <option value="皮内注射">皮内注射</option>
+                          <option value="嚼服">嚼服</option>
+                          <option value="静脉滴注">静脉滴注</option>
+                          <option value="入壶">入壶</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">频次:</label>
+                        <select>
+                          <option>一日一次</option>
+                          <option>一日二次</option>
+                          <option>一日三次</option>
+                          <option>一日四次</option>
+                          <option>准遗嘱</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">总量单位:</label>
+                        <select>
+                          <option value="盒" selected="selected">盒</option>
+                          <option value="瓶">瓶</option>
+                          <option value="袋">袋</option>
+                          <option value="套">套</option>
+                          <option value="板">板</option>
+                          <option value="支">支</option>
+                          <option value="包">包</option>
+                          <option value="g">g</option>
+                          <option value="mg">mg</option>
+                          <option value="μg">μg</option>
+                          <option value="ml">ml</option>
+                          <option value="IU">IU</option>
+                          <option value="片">片</option>
+                          <option value="粒">粒</option>
+                          <option value="丸">丸</option>
+                          <option value="贴">贴</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品规格:</label>
+                        <input type="text" class="form-control" placeholder="/*/">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品剂型:</label>
+                        <select name="">
+                          <option value="">片剂</option>
+                          <option value="">胶囊剂</option>
+                          <option value="">注射剂</option>
+                          <option value="">粉针剂</option>
+                          <option value="">汤剂</option>
+                          <option value="">乳剂</option>
+                          <option value="">滴眼剂</option>
+                          <option value="">滴耳剂</option>
+                          <option value="">丸剂</option>
+                          <option value="">栓剂</option>
+                          <option value="">贴剂</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">是否溶媒:</label>
+                        <select>
+                          <option>是</option>
+                          <option>否</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="blk-2x"></div>
+                <fieldset>
+                  <legend>其他信息</legend>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">医保类型:</label>
+                        <select name="">
+                          <option value="医保基本项目">医保基本项目</option>
+                          <option value="医保资费项目">医保资费项目</option>
+                          <option value="医保特殊检查项目">医保特殊检查项目</option>
+                          <option value="甲类">甲类</option>
+                          <option value="医保其他用药">医保其他用药</option>
+                          <option value="医保自费用药">医保自费用药</option>
+                          <option value="单味自费中草药">单味自费中草药</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">最小单位:</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">换算量:</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">批次:</label>
+                        <input type="text" class="form-control" placeholder="2">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药物类型:</label>
+                        <select>
+                          <option></option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">库存预警:</label>
+                        <input type="text" class="form-control" placeholder="">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">生产厂家:</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">药品状态:</label>
+                        <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary">
+                            <input type="radio" name="options" id="option1"> 启用 </label>
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="options" id="option2"> 禁用 </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label-control fixed-md">备注:</label>
+                        <input type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </paper-scroll-header-panel>
+        <div class="footer horizontal layout">
+          <div class="flex"></div>
+          <paper-button id="cancel1" secondary>放弃保存并关闭</paper-button>
+          <paper-button id="save" accent>保存</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'dialog-add-drug',
+      listeners: {
+        'save.tap': '_save',
+        'cancel1.tap': '_cancel',
+        'cancel2.tap': '_cancel'
+      },
+      properties: {
+        profile: {
+          type: Object,
+          notify: true,
+        }
+      },
+      _cancel: function() {
+        this.$.dialog.toggle();
+      },
+      _save: function() {
+        this.$.dialog.toggle();
+      },
+      toggle: function() {
+        this.$.dialog.toggle();
+      }
+    });
+  })();
+  </script>
+</dom-module>

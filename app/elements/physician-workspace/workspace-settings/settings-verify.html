@@ -1,0 +1,164 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="settings-verify">
+  <template>
+    <style include="shared-styles"></style>
+    <style include="shared-polymer-styles"></style>
+    <style>
+    :host {
+      display: block;
+    }
+    
+    #main {
+      background-color: var(--foreground-color);
+    }
+    
+    .org-verify .font-info {
+      font-size: .9em;
+    }
+    
+    .org-verify .verify-img {
+      position: relative;
+      width: 225px;
+      float: right;
+      margin-left: 100px;
+      text-align: center;
+    }
+    
+    .org-verify .verify-img img {
+      width: 100%;
+      border: 1px solid var(--box-border-color);
+    }
+    
+    .org-verify .verify-img.blk img {
+      width: 100%;
+      border: none;
+    }
+    
+    .org-verify .verify-img.identity img {
+      width: 120px !important;
+      border: none;
+    }
+    
+    .org-verify .verify-img .upfile {
+      display: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 225px;
+      background: rgba(0, 0, 0, .1);
+      line-height: 225px;
+    }
+    
+    .org-verify .verify-img:hover .upfile {
+      display: block;
+    }
+    
+    .org-verify .verify-img .upfile a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+    }
+    </style>
+    <div class="cards org-verify p-20">
+      <div class="well-box  col-md-10">
+        <div class="pull-well verify-img identity">
+          <div>示例</div>
+          <img src="/images/certificate2.png">
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg vt">《医师执业证书》(正面):</label>
+              <span class="text-dark font-info">请提交中华人民共和国《医师执业证书》，格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</span>
+              <div class="blk-2x"></div>
+              <paper-button secondary>上传图片</paper-button>
+              <div class="blk-2x"></div>
+              <div class="text-danger">未通过审核请重新上传</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="well-box  col-md-10">
+        <div class="pull-well verify-img identity">
+          <div>示例</div>
+          <img src="/images/certificate1.png">
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg vt">《医师执业证书》(反面):</label>
+              <span class="text-dark font-info">请提交中华人民共和国《医师执业证书》，格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</span>
+              <div class="blk-2x"></div>
+              <paper-button secondary>上传图片</paper-button>
+              <div class="blk-2x"></div>
+              <div class="text-danger">未通过审核请重新上传</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="well-box  col-md-10">
+        <div class="pull-well verify-img identity">
+          <div>示例</div>
+          <img src="/images/identity_front.jpg">
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg vt">运营者身份证件(正面):</label>
+              <span class="text-dark font-info">请提交中华人民共和国居民身份证，无居民身份证的内地居民可提交《临时居民身份证》。 格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</span>
+              <div class="blk-2x"></div>
+              <paper-button secondary>上传图片</paper-button>
+              <div class="blk-2x"></div>
+              <div class="text-danger">未通过审核请重新上传</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="well-box  col-md-10">
+        <div class="pull-well verify-img identity">
+          <div>示例</div>
+          <img src="/images/identity_reverse.jpg">
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg vt">运营者身份证件(反面):</label>
+              <span class="text-dark font-info">请提交中华人民共和国居民身份证，无居民身份证的内地居民可提交《临时居民身份证》。 格式要求：支持.jpg .jpeg .bmp .gif .png格式照片，大小不超过5M。</span>
+              <div class="blk-2x"></div>
+              <paper-button secondary>上传图片</paper-button>
+              <div class="blk-2x"></div>
+              <div class="text-danger">未通过审核请重新上传</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blk-2x"></div>
+      <div class="well-box  col-md-10">
+        <div class="pull-well verify-img blk"><img>
+        </div>
+        <div class="well">
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="label-control fixed-lg"></label>
+              <paper-button primary class="btn-block">提交</paper-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'settings-verify',
+    });
+  })();
+  </script>
+</dom-module>
